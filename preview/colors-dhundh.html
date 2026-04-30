@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colours · Dhundh — Meyakara Design System</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-serif); padding: 28px 32px; }
+
+.head { padding-bottom: 14px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 22px; }
+.head-row { display: flex; align-items: baseline; gap: 14px; justify-content: space-between; margin-bottom: 6px; }
+.head-name { font-size: 22px; font-weight: 400; display: flex; align-items: baseline; gap: 10px; }
+.head-hi { font-family: var(--font-devanagari); font-size: 17px; color: var(--ink-mute); }
+.head-tag { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-faint); }
+.head-desc { font-size: 12px; color: var(--ink-mute); line-height: 1.55; font-style: italic; max-width: 60ch; }
+.head-quote { font-size: 11px; color: var(--ink-faint); margin-top: 6px; font-style: italic; border-left: 2px solid var(--rule-soft); padding-left: 10px; }
+
+.demo {
+  background: color-mix(in oklab, var(--dhundh-fog) 30%, var(--paper));
+  border: 1px solid var(--rule-soft);
+  padding: 20px;
+  margin-bottom: 22px;
+}
+.demo-label { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
+.section-label { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-faint); padding-bottom: 10px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 14px; }
+
+.role-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+.swatch { display: flex; flex-direction: column; gap: 5px; }
+.chip { height: 76px; border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent); }
+.role-tag { font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-faint); }
+.swatch-var { font-family: var(--font-mono); font-size: 9px; color: var(--ink-faint); }
+.swatch-hex { font-family: var(--font-mono); font-size: 9px; color: var(--ink-faint); }
+.swatch-role-desc { font-size: 9px; color: var(--ink-faint); font-style: italic; line-height: 1.4; margin-top: 1px; }
+.swatch--soul .chip { outline: 2px solid var(--ink); outline-offset: -2px; }
+.swatch--soul .role-tag { color: var(--ink-mute); }
+
+.extra-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 22px; }
+.extra-chip { height: 40px; border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent); }
+.extra-note { font-size: 9px; color: var(--ink-faint); font-style: italic; line-height: 1.4; margin-top: 5px; }
+
+.code-block {
+  font-family: var(--font-mono); font-size: 10px; color: var(--ink-mute);
+  line-height: 1.7; background: var(--paper-deep); padding: 14px 16px;
+  border: 1px solid var(--rule-soft); margin-bottom: 22px;
+}
+.foot { padding-top: 16px; border-top: 1px solid var(--rule-soft); display: flex; justify-content: space-between; }
+.foot span { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-faint); }
+</style>
+</head>
+<body class="collection-dhundh">
+
+<div class="head">
+  <div class="head-row">
+    <div class="head-name">Dhundh <span class="head-hi">धुंध</span></div>
+    <div class="head-tag">The Hills · 6am Ridge Line</div>
+  </div>
+  <div class="head-desc">Fog white, cool blue-grey, muted pine, stone. The colours of a 6am ridge line.</div>
+  <div class="head-quote">The city will wait. The hills won't.</div>
+</div>
+
+<div class="demo">
+  <div class="demo-label">Section background · atmosphere tint (dhundh-fog at 30%)</div>
+
+  <div class="section-label">Role assignments — activate with .collection-dhundh</div>
+  <div class="role-grid">
+    <div class="swatch">
+      <div class="chip" style="background: var(--accent-tint); border: 1px solid var(--rule-soft);"></div>
+      <div class="role-tag">Atmosphere</div>
+      <div class="swatch-var">--accent-tint → dhundh-fog</div>
+      <div class="swatch-hex">#E8E9E6</div>
+      <div class="swatch-role-desc">The mist. Close to paper — intentionally quiet.</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: var(--accent-soft);"></div>
+      <div class="role-tag">Structure</div>
+      <div class="swatch-var">--accent-soft → dhundh-blue-grey</div>
+      <div class="swatch-hex">#8FA0A8</div>
+      <div class="swatch-role-desc">Cool morning light on rock. Borders, mid-weight UI.</div>
+    </div>
+    <div class="swatch swatch--soul">
+      <div class="chip" style="background: var(--accent);"></div>
+      <div class="role-tag">Soul ◼</div>
+      <div class="swatch-var">--accent → dhundh-pine</div>
+      <div class="swatch-hex">#4F5C53</div>
+      <div class="swatch-role-desc">Dark pine. The colour that names the hill. CTAs.</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: var(--accent-deep);"></div>
+      <div class="role-tag">Depth</div>
+      <div class="swatch-var">--accent-deep → dhundh-deep</div>
+      <div class="swatch-hex">#2D332E</div>
+      <div class="swatch-role-desc">Earth before dawn. High contrast moments.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-label">Full palette · all five colours</div>
+<div class="extra-grid">
+  <div class="swatch">
+    <div class="extra-chip" style="background: #E8E9E6; border: 1px solid var(--rule-soft);"></div>
+    <div class="swatch-var">dhundh-fog</div>
+    <div class="swatch-hex">#E8E9E6</div>
+    <div class="extra-note">→ atmosphere</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #8FA0A8;"></div>
+    <div class="swatch-var">dhundh-blue-grey</div>
+    <div class="swatch-hex">#8FA0A8</div>
+    <div class="extra-note">→ structure</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #6E6A60;"></div>
+    <div class="swatch-var">dhundh-stone</div>
+    <div class="swatch-hex">#6E6A60</div>
+    <div class="extra-note">Unmapped. Mid-value bridge.</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #4F5C53;"></div>
+    <div class="swatch-var">dhundh-pine</div>
+    <div class="swatch-hex">#4F5C53</div>
+    <div class="extra-note">→ soul</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #2D332E;"></div>
+    <div class="swatch-var">dhundh-deep</div>
+    <div class="swatch-hex">#2D332E</div>
+    <div class="extra-note">→ depth</div>
+  </div>
+</div>
+
+<div class="section-label">Activation</div>
+<div class="code-block">/* Apply on the collection page or section wrapper. */
+
+&lt;main class="collection-dhundh"&gt;
+  &lt;!-- --accent      = #4F5C53 (dhundh-pine / soul)      --&gt;
+  &lt;!-- --accent-soft = #8FA0A8 (dhundh-blue-grey / struct) --&gt;
+  &lt;!-- --accent-deep = #2D332E (dhundh-deep / depth)      --&gt;
+  &lt;!-- --accent-tint = #E8E9E6 (dhundh-fog / atmosphere)  --&gt;
+&lt;/main&gt;</div>
+
+<div class="foot">
+  <span>Meyakara Design System</span>
+  <span>Dhundh · The Hills</span>
+</div>
+
+</body>
+</html>

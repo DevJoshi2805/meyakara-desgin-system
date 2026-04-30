@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Meyakara — Storefront</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="alternate icon" href="../../assets/favicon.png">
+<link rel="stylesheet" href="../../colors_and_type.css">
+<link rel="stylesheet" href="storefront.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="Header.jsx"></script>
+<script type="text/babel" src="HomepageHero.jsx"></script>
+<script type="text/babel" src="CollectionGrid.jsx"></script>
+<script type="text/babel" src="ProductCard.jsx"></script>
+<script type="text/babel" src="ProductGrid.jsx"></script>
+<script type="text/babel" src="ProductPage.jsx"></script>
+<script type="text/babel" src="BagDrawer.jsx"></script>
+<script type="text/babel" src="Footer.jsx"></script>
+
+<script type="text/babel">
+function App() {
+  const [view, setView] = React.useState('home');           // home | collection | product
+  const [collectionId, setCollectionId] = React.useState('lino');
+  const [active, setActive] = React.useState(null);
+  const [bagOpen, setBagOpen] = React.useState(false);
+  const [bag, setBag] = React.useState([]);
+
+  const openCollection = (id) => { setCollectionId(id); setView('collection'); window.scrollTo(0,0); };
+  const openProduct = (p) => { setActive(p); setView('product'); window.scrollTo(0,0); };
+  const goHome = () => { setView('home'); window.scrollTo(0,0); };
+  const addToBag = (p) => { setBag([...bag, p]); setBagOpen(true); };
+
+  const collection = window.MK_COLLECTIONS.find(c => c.id === collectionId);
+
+  return (
+    <div className="mk-app" data-screen-label={view}>
+      <Header onOpenBag={() => setBagOpen(true)} bagCount={bag.length}/>
+
+      {view === 'home' && (
+        <>
+          <HomepageHero onEnter={() => openCollection('lino')}/>
+          <CollectionGrid onOpen={openCollection}/>
+          <ProductGrid eyebrow="A few quiet things" title="Recently found." onOpen={openProduct}/>
+        </>
+      )}
+
+      {view === 'collection' && (
+        <>
+          <div style={{padding:'48px 32px 0'}}>
+            <div className="mk-product__crumb">
+              <span onClick={goHome} style={{cursor:'pointer'}}>← Home</span>
+              <span className="mk-mono">{collection.id.toUpperCase()}</span>
+            </div>
+          </div>
+          <ProductGrid
+            eyebrow={`A collection · ${collection.desc}`}
+            title={collection.name}
+            lang={collection.lang}
+            onOpen={openProduct}
+          />
+        </>
+      )}
+
+      {view === 'product' && active && (
+        <ProductPage p={active} onAdd={addToBag} onBack={() => openCollection(collectionId)}/>
+      )}
+
+      <Footer/>
+
+      <BagDrawer
+        open={bagOpen}
+        items={bag}
+        onClose={() => setBagOpen(false)}
+        onCheckout={() => alert('The escape is patient.')}
+      />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

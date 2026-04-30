@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Meyakara — Storefront (Print)</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="alternate icon" href="../../assets/favicon.png">
+<link rel="stylesheet" href="../../colors_and_type.css">
+<link rel="stylesheet" href="storefront.css">
+<style>
+  /* ============================================================
+     Print-friendly storefront export.
+     Renders Home, Collection (Lino), and Product (The Slow Sunday
+     Trouser) as three sequential A4-portrait pages with full
+     colour fidelity. No interactions, no drawers, no sticky chrome.
+     ============================================================ */
+
+  @page { size: A4 portrait; margin: 0; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Each "page" is one A4-portrait sheet (210 × 297mm). We size in
+     mm so the on-screen preview matches the printed sheet exactly. */
+  .pg {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    background: var(--paper);
+    page-break-after: always;
+    break-after: page;
+    overflow: hidden;
+    position: relative;
+  }
+  .pg:last-child { page-break-after: auto; break-after: auto; }
+
+  /* Kill all sticky / fixed positioning — print expects flow layout. */
+  .mk-header { position: static !important; }
+  .mk-scrim, .mk-bag { display: none !important; }
+
+  /* Hover/transition states are noise on paper. */
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  /* Cursor pointers don't make sense on paper. */
+  [role="button"], [onclick], .mk-pcard, .mk-door, .mk-bag__close,
+  .mk-nav__left span, .mk-nav__right span, .mk-product__crumb span {
+    cursor: default !important;
+  }
+
+  /* Trim section padding so each composition fits one A4 page. */
+  .mk-hero    { padding: 28px 24px 36px; min-height: 0; gap: 28px; }
+  .mk-hero__image { min-height: 220px; }
+  .mk-section { padding: 32px 24px; }
+  .mk-section__head { margin-bottom: 20px; }
+  .mk-product { padding: 24px 24px 36px; }
+  .mk-product__grid { gap: 32px; }
+  .mk-footer { padding: 28px 24px 18px; }
+  .mk-footer__top { padding-bottom: 22px; }
+
+  /* Tighten product grids so 6 cards fit a single page. */
+  .mk-pgrid { gap: 22px 18px; }
+  .mk-pcard__img { aspect-ratio: 4/5; }
+
+  /* Doors fit five-across on portrait. */
+  .mk-doors { gap: 12px; }
+  .mk-door__palette { height: 130px; }
+
+  /* Don't split a card or a section head across pages. */
+  .mk-pcard, .mk-door, .mk-section__head, .mk-hero__copy,
+  .mk-product__detail, .mk-product__row, .mk-footer {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Print-only: tame the screen scrollbar for the preview. */
+  body { overflow-x: hidden; }
+
+  @media print {
+    body { background: var(--paper); }
+    .pg { box-shadow: none; margin: 0; }
+  }
+
+  @media screen {
+    body { background: #d8d4cc; padding: 24px 0; }
+    .pg { box-shadow: 0 12px 40px -16px rgba(0,0,0,0.25); margin: 0 auto 24px; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="Header.jsx"></script>
+<script type="text/babel" src="HomepageHero.jsx"></script>
+<script type="text/babel" src="CollectionGrid.jsx"></script>
+<script type="text/babel" src="ProductCard.jsx"></script>
+<script type="text/babel" src="ProductGrid.jsx"></script>
+<script type="text/babel" src="ProductPage.jsx"></script>
+<script type="text/babel" src="Footer.jsx"></script>
+
+<script type="text/babel">
+// Three-page print export: Home, Collection (Lino), Product detail.
+// Components are unchanged from the live storefront — same fonts,
+// same palettes, same collection token structure.
+
+function PrintApp() {
+  // Wait one tick for MK_COLLECTIONS / MK_PRODUCTS to register on window.
+  const collection = window.MK_COLLECTIONS.find(c => c.id === 'lino');
+  const featured   = window.MK_PRODUCTS.find(p => p.id === 'p1');
+
+  const noop = () => {};
+
+  return (
+    <>
+      {/* ── Page 1 — Home ───────────────────────────────────── */}
+      <div className="pg">
+        <Header onOpenBag={noop} bagCount={0}/>
+        <HomepageHero onEnter={noop}/>
+        <CollectionGrid onOpen={noop}/>
+      </div>
+
+      {/* ── Page 2 — Collection (Lino) ──────────────────────── */}
+      <div className="pg">
+        <Header onOpenBag={noop} bagCount={0}/>
+        <div style={{padding:'24px 24px 0'}}>
+          <div className="mk-product__crumb">
+            <span>← Home</span>
+            <span className="mk-mono">{collection.id.toUpperCase()}</span>
+          </div>
+        </div>
+        <ProductGrid
+          eyebrow={`A collection · ${collection.desc}`}
+          title={collection.name}
+          lang={collection.lang}
+          onOpen={noop}
+        />
+      </div>
+
+      {/* ── Page 3 — Product detail ─────────────────────────── */}
+      <div className="pg">
+        <Header onOpenBag={noop} bagCount={0}/>
+        <ProductPage p={featured} onAdd={noop} onBack={noop}/>
+        <Footer/>
+      </div>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<PrintApp/>);
+
+/* ── Auto-print: wait for fonts, JSX transform, layout, then print. */
+(async () => {
+  // Babel transforms scripts asynchronously after parse — wait a beat
+  // so the React tree is mounted before we measure fonts.
+  await new Promise(r => setTimeout(r, 300));
+  if (document.fonts && document.fonts.ready) {
+    try { await document.fonts.ready; } catch (_) {}
+  }
+  await new Promise(r => setTimeout(r, 500));
+  window.print();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Components · Iconography</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  body { margin: 0; padding: 24px 28px; }
+  .grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px 8px; }
+  .cell { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .cell svg { width: 22px; height: 22px; stroke-width: 1.5; color: var(--ink); }
+  .cell .name { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-mute); }
+  .note { margin-top: 16px; font-size: 11px; color: var(--fg-mute); border-top: 1px solid var(--rule-soft); padding-top: 10px; font-style: italic; font-family: var(--font-serif); }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="cell"><i data-lucide="search"></i><div class="name">Search</div></div>
+    <div class="cell"><i data-lucide="user"></i><div class="name">Account</div></div>
+    <div class="cell"><i data-lucide="shopping-bag"></i><div class="name">Bag</div></div>
+    <div class="cell"><i data-lucide="menu"></i><div class="name">Menu</div></div>
+    <div class="cell"><i data-lucide="x"></i><div class="name">Close</div></div>
+    <div class="cell"><i data-lucide="chevron-left"></i><div class="name">Prev</div></div>
+    <div class="cell"><i data-lucide="chevron-right"></i><div class="name">Next</div></div>
+    <div class="cell"><i data-lucide="chevron-down"></i><div class="name">More</div></div>
+    <div class="cell"><i data-lucide="arrow-up-right"></i><div class="name">Open</div></div>
+    <div class="cell"><i data-lucide="arrow-right"></i><div class="name">Continue</div></div>
+    <div class="cell"><i data-lucide="instagram"></i><div class="name">Social</div></div>
+    <div class="cell"><i data-lucide="heart"></i><div class="name">Save</div></div>
+  </div>
+  <div class="note">Lucide · 1.5px stroke · placeholder set until commissioned.</div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

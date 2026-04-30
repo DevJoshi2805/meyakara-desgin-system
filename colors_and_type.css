@@ -1,0 +1,403 @@
+/* ============================================================
+   MEYAKARA — Colors & Type
+   The Shape of Your Escape
+
+   Meyakara has no fixed brand colour. The palette shifts with
+   every collection. What stays constant is the FOUNDATION:
+   a quiet, paper-like canvas with deep ink for type, and a
+   tight typographic system in Stoke + Tiro Devanagari Hindi.
+   ============================================================ */
+
+/* Brand-licensed font files (local). */
+@font-face {
+  font-family: "Stoke";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("fonts/Stoke-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Stoke";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/Stoke-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Tiro Devanagari Hindi";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/TiroDevanagariHindi-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Tiro Devanagari Hindi";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/TiroDevanagariHindi-Italic.ttf") format("truetype");
+}
+
+:root {
+  /* -------------------------------------------------- */
+  /* FOUNDATION — paper & ink. Used on every collection. */
+  /* -------------------------------------------------- */
+
+  /* Paper — the unbleached, never-pure-white backgrounds      */
+  /* sampled from the brand's logo card.                       */
+  --paper:           #F1ECE0;   /* primary canvas                        */
+  --paper-warm:      #EDE6D4;   /* warmer paper for cards / sections     */
+  --paper-cool:      #ECE9E1;   /* cooler paper variant                  */
+  --paper-deep:      #DDD5C2;   /* paper at rest, hairline contrast      */
+
+  /* Ink — the brand's typographic black. Never pure black.    */
+  --ink:             #1A1814;   /* primary text & marks                  */
+  --ink-soft:        #2B2722;   /* body when --ink is too heavy          */
+  --ink-mute:        #6B6359;   /* secondary, captions, meta             */
+  --ink-faint:       #9C9384;   /* tertiary, dividers in text contexts   */
+  --ink-line:        #1A1814;   /* hairline rule color (use at 1px)      */
+
+  /* Semantic foreground / background — collection-agnostic.   */
+  --bg:              var(--paper);
+  --bg-raised:       var(--paper-warm);
+  --bg-sunken:       var(--paper-deep);
+  --fg:              var(--ink);
+  --fg-soft:         var(--ink-soft);
+  --fg-mute:         var(--ink-mute);
+  --fg-faint:        var(--ink-faint);
+  --rule:            var(--ink);
+  --rule-soft:       color-mix(in oklab, var(--ink) 18%, transparent);
+
+  /* -------------------------------------------------- */
+  /* COLLECTION PALETTES — found, not invented.          */
+  /* Each palette is 4–5 colours that "share a sky".     */
+  /* Activate by setting one as the active accent set.   */
+  /* -------------------------------------------------- */
+
+  /* Dhundh — The Hills (6am ridge line)                       */
+  --dhundh-fog:        #E8E9E6;
+  --dhundh-blue-grey:  #8FA0A8;
+  --dhundh-pine:       #4F5C53;
+  --dhundh-stone:      #6E6A60;
+  --dhundh-deep:       #2D332E;
+
+  /* Baar — The Beach (colours left in the sun)                */
+  --baar-bleached:     #F3EBDA;
+  --baar-coral:        #D98A78;
+  --baar-salt:         #B8B5A8;
+  --baar-driftwood:    #8B6F55;
+  --baar-tide:         #4F5E5C;
+
+  /* Raat — Nightlife (the hour before)                        */
+  --raat-midnight:     #0A0A12;
+  --raat-violet:       #5B3AC7;
+  --raat-gold:         #C9A24A;
+  --raat-bleed:        #8E2A6A;
+  --raat-smoke:        #1F1B2A;
+
+  /* Mandarin — The Collar (colours of restraint)              */
+  --mandarin-ink:      #1B2A4A;
+  --mandarin-ivory:    #E9E1CC;
+  --mandarin-slate:    #5B6772;
+  --mandarin-silk:     #C7B89A;
+  --mandarin-deep:     #11182B;
+
+  /* Lino — Italian Linen (a slow Sunday)                      */
+  --lino-cream:        #F0E6D0;
+  --lino-stone:        #C9B89A;
+  --lino-terracotta:   #B26B4A;
+  --lino-olive:        #7E7A4A;
+  --lino-sun:          #E2C77F;
+
+  /* -------------------------------------------------- */
+  /* ACTIVE ACCENTS — point these at any collection.     */
+  /* Default = foundation (ink). No collection is        */
+  /* active until a .collection-* class is applied.      */
+  /*                                                     */
+  /* Semantic role of each pointer:                      */
+  /*   --accent-tint : atmosphere  (large surface wash)  */
+  /*   --accent-soft : structure   (borders, mid-weight) */
+  /*   --accent      : soul        (CTAs, key emphasis)  */
+  /*   --accent-deep : depth       (high contrast, dark) */
+  /*                                                     */
+  /* Never use --accent on lobby surfaces (header,       */
+  /* footer, nav, checkout). See .mk-lobby below.        */
+  /* -------------------------------------------------- */
+  --accent:          var(--ink);
+  --accent-soft:     var(--ink-mute);
+  --accent-deep:     var(--ink);
+  --accent-tint:     var(--paper-warm);
+
+  /* -------------------------------------------------- */
+  /* TYPE — Stoke (Latin) + Tiro Devanagari Hindi.       */
+  /* Stoke is a warm, slab-influenced serif with the     */
+  /* same gentle bracketed feet as the wordmark.         */
+  /* -------------------------------------------------- */
+
+  --font-serif:        "Stoke", "Tiro Devanagari Hindi", Georgia, "Times New Roman", serif;
+  --font-devanagari:   "Tiro Devanagari Hindi", "Stoke", serif;
+  --font-mono:         ui-monospace, "SFMono-Regular", "Menlo", monospace;
+
+  /* Type scale — quiet, editorial. Mobile floor 15px.  */
+  --t-display:         clamp(2.75rem, 4.5vw + 1rem, 5.25rem); /* hero          */
+  --t-h1:              clamp(2rem,    2.4vw + 1rem, 3.25rem); /* page title    */
+  --t-h2:              clamp(1.5rem,  1.2vw + 1rem, 2.125rem);/* section       */
+  --t-h3:              1.375rem;                              /* sub-section   */
+  --t-h4:              1.125rem;                              /* small heading */
+  --t-body:            1.0625rem;                             /* body 17px     */
+  --t-body-sm:         0.9375rem;                             /* secondary     */
+  --t-caption:         0.8125rem;                             /* meta/labels   */
+  --t-eyebrow:         0.6875rem;                             /* tag, eyebrow  */
+
+  --lh-tight:          1.05;
+  --lh-snug:           1.2;
+  --lh-prose:          1.55;
+  --lh-loose:          1.75;
+
+  /* Letter-spacing — Stoke is wide-set; only widen LABELS. */
+  --tk-eyebrow:        0.22em;
+  --tk-label:          0.14em;
+  --tk-body:           0.005em;
+  --tk-display:        -0.005em;
+
+  /* -------------------------------------------------- */
+  /* SPACE & RHYTHM                                      */
+  /* -------------------------------------------------- */
+  --s-1:   4px;
+  --s-2:   8px;
+  --s-3:   12px;
+  --s-4:   16px;
+  --s-5:   24px;
+  --s-6:   32px;
+  --s-7:   48px;
+  --s-8:   64px;
+  --s-9:   96px;
+  --s-10: 128px;
+
+  --measure-narrow:   34ch;   /* poetic copy, taglines              */
+  --measure:          58ch;   /* body                                */
+  --measure-wide:     72ch;   /* long-form                           */
+
+  /* -------------------------------------------------- */
+  /* RADII, BORDERS, SHADOWS                             */
+  /* Quiet by default. Cards prefer hairline rules to    */
+  /* shadows. Reserve shadows for elevated overlays.     */
+  /* -------------------------------------------------- */
+  --radius-0:    0;
+  --radius-1:    2px;
+  --radius-2:    4px;
+  --radius-pill: 999px;
+  --radius-circle: 50%;
+
+  --hairline:    1px solid var(--rule);
+  --hairline-soft: 1px solid var(--rule-soft);
+
+  --shadow-quiet: 0 1px 0 0 color-mix(in oklab, var(--ink) 8%, transparent);
+  --shadow-card:  0 12px 28px -18px color-mix(in oklab, var(--ink) 35%, transparent);
+  --shadow-pop:   0 24px 60px -28px color-mix(in oklab, var(--ink) 45%, transparent);
+
+  /* -------------------------------------------------- */
+  /* MOTION — unhurried, never bouncy.                   */
+  /* -------------------------------------------------- */
+  --ease-out:    cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in:     cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  --ease-quiet:  cubic-bezier(0.4, 0.0, 0.2, 1);
+  --dur-1:    140ms;
+  --dur-2:    240ms;
+  --dur-3:    420ms;
+  --dur-4:    700ms;
+}
+
+/* ============================================================
+   COLLECTION ACTIVATIONS
+   Apply on the outermost wrapper of a collection page/section.
+   Header, footer, and all brand chrome must sit outside.
+   ============================================================ */
+
+/* Lino — Italian Linen (a slow Sunday) */
+.collection-lino {
+  --accent:       var(--lino-terracotta); /* soul        */
+  --accent-soft:  var(--lino-stone);      /* structure   */
+  --accent-deep:  var(--lino-olive);      /* depth       */
+  --accent-tint:  var(--lino-sun);        /* atmosphere  */
+}
+
+/* Dhundh — The Hills (6am ridge line) */
+.collection-dhundh {
+  --accent:       var(--dhundh-pine);       /* soul        */
+  --accent-soft:  var(--dhundh-blue-grey);  /* structure   */
+  --accent-deep:  var(--dhundh-deep);       /* depth       */
+  --accent-tint:  var(--dhundh-fog);        /* atmosphere  */
+}
+
+/* Baar — The Beach (colours left in the sun) */
+/* Note: --accent (coral) is decorative only on --paper.    */
+/* Contrast ≈ 2.8:1. Use --accent-deep for small text.      */
+.collection-baar {
+  --accent:       var(--baar-coral);        /* soul        */
+  --accent-soft:  var(--baar-driftwood);    /* structure   */
+  --accent-deep:  var(--baar-tide);         /* depth       */
+  --accent-tint:  var(--baar-bleached);     /* atmosphere  */
+}
+
+/* Mandarin — The Collar (colours of restraint) */
+.collection-mandarin {
+  --accent:       var(--mandarin-ink);      /* soul        */
+  --accent-soft:  var(--mandarin-slate);    /* structure   */
+  --accent-deep:  var(--mandarin-deep);     /* depth       */
+  --accent-tint:  var(--mandarin-silk);     /* atmosphere  */
+}
+
+/* Raat — Nightlife (the hour before) */
+/* The only collection that overrides the foundation.       */
+/* Apply on the outermost collection wrapper only.          */
+/* Header and footer MUST remain outside this wrapper.      */
+.collection-raat {
+  --bg:           var(--raat-midnight);
+  --bg-raised:    var(--raat-smoke);
+  --fg:           var(--paper);
+  --fg-soft:      var(--mandarin-silk);
+  --fg-mute:      color-mix(in oklab, var(--paper) 52%, transparent);
+  --fg-faint:     color-mix(in oklab, var(--paper) 28%, transparent);
+  --rule:         color-mix(in oklab, var(--paper) 18%, transparent);
+  --rule-soft:    color-mix(in oklab, var(--paper) 10%, transparent);
+
+  --accent:       var(--raat-gold);         /* soul        */
+  --accent-soft:  var(--raat-violet);       /* structure   */
+  --accent-deep:  var(--raat-bleed);        /* depth       */
+  --accent-tint:  var(--raat-smoke);        /* atmosphere  */
+
+  background:     var(--bg);
+  color:          var(--fg);
+}
+
+/* ============================================================
+   THE LOBBY — brand chrome. Never inherits collection accent.
+   Apply on: <header>, <footer>, nav drawers, account pages,
+   checkout, error and loading states.
+   ============================================================ */
+.mk-lobby {
+  --accent:       var(--ink);
+  --accent-soft:  var(--ink-mute);
+  --accent-deep:  var(--ink);
+  --accent-tint:  var(--paper-warm);
+  background:     var(--paper);
+  color:          var(--ink);
+}
+
+/* ============================================================
+   SEMANTIC ELEMENT STYLES
+   Use these as a baseline; collection pages will swap accents.
+   ============================================================ */
+
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-serif);
+  font-size: var(--t-body);
+  line-height: var(--lh-prose);
+  letter-spacing: var(--tk-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--ink); color: var(--paper); }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  color: var(--fg);
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--t-h1); line-height: var(--lh-tight); letter-spacing: var(--tk-display); }
+h2 { font-size: var(--t-h2); line-height: var(--lh-snug);  letter-spacing: var(--tk-display); }
+h3 { font-size: var(--t-h3); line-height: var(--lh-snug); }
+h4 { font-size: var(--t-h4); line-height: var(--lh-snug); }
+
+p {
+  margin: 0 0 1em 0;
+  max-width: var(--measure);
+  text-wrap: pretty;
+  color: var(--fg-soft);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+  transition: opacity var(--dur-1) var(--ease-quiet);
+}
+a:hover { opacity: 0.62; }
+
+hr {
+  border: 0;
+  border-top: var(--hairline);
+  margin: var(--s-7) 0;
+}
+
+small, .caption {
+  font-size: var(--t-caption);
+  color: var(--fg-mute);
+  letter-spacing: var(--tk-body);
+}
+
+/* Eyebrow — used above titles. ALL CAPS, wide tracking. */
+.eyebrow {
+  font-size: var(--t-eyebrow);
+  letter-spacing: var(--tk-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  font-weight: 400;
+}
+
+/* Display — for taglines. Always tight, never bold. */
+.display {
+  font-size: var(--t-display);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tk-display);
+  font-weight: 400;
+  text-wrap: balance;
+}
+
+/* Tagline — italic Tiro for Devanagari, italic Stoke for Latin. */
+.tagline-en { font-family: var(--font-serif); font-style: italic; }
+.tagline-hi { font-family: var(--font-devanagari); font-style: italic; }
+
+/* Devanagari sample helper */
+.devanagari { font-family: var(--font-devanagari); }
+
+/* Inline code / mono — used sparingly. */
+code, pre, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+
+/* Quiet button — borrowed from product UI. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--font-serif);
+  font-size: var(--t-caption);
+  letter-spacing: var(--tk-label);
+  text-transform: uppercase;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  padding: 14px 22px;
+  cursor: pointer;
+  transition: background var(--dur-2) var(--ease-quiet),
+              color      var(--dur-2) var(--ease-quiet);
+}
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn:active { transform: translateY(0.5px); }
+
+.btn--solid {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn--solid:hover { background: transparent; color: var(--ink); }

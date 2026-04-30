@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colours · Foundation — Meyakara Design System</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-serif); padding: 28px 32px; }
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.head-title { font-size: 20px; font-weight: 400; letter-spacing: -0.005em; }
+.head-note {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+.group { margin-bottom: 32px; }
+.group-label {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule-soft);
+  margin-bottom: 14px;
+}
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
+
+.swatch { display: flex; flex-direction: column; gap: 6px; }
+.chip {
+  height: 72px;
+  border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+  position: relative;
+}
+.swatch-name {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.swatch-var {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--ink-faint);
+}
+.swatch-hex {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--ink-faint);
+}
+.swatch-role {
+  font-size: 9px;
+  color: var(--ink-faint);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* Semantic aliases section */
+.alias-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.alias-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--rule-soft);
+}
+.alias-chip { width: 36px; height: 28px; flex-shrink: 0; border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent); }
+.alias-info { display: flex; flex-direction: column; gap: 2px; }
+.alias-token { font-family: var(--font-mono); font-size: 9px; color: var(--ink); }
+.alias-points { font-family: var(--font-mono); font-size: 9px; color: var(--ink-faint); }
+.alias-desc { font-size: 9px; color: var(--ink-faint); font-style: italic; }
+
+/* Constant note */
+.constant-note {
+  background: var(--paper-warm);
+  border: 1px solid var(--rule-soft);
+  padding: 14px 16px;
+  margin-bottom: 28px;
+  font-size: 11px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  font-style: italic;
+  max-width: 72ch;
+}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <div class="head-title">Foundation</div>
+  <div class="head-note">Constant across every collection · never changes</div>
+</div>
+
+<p class="constant-note">
+  The foundation is the brand at rest. Paper is the unbleached canvas. Ink is the mark that gives it shape.
+  These vars are used on every surface in every collection. They never shift. The logo lives here and nowhere else.
+  The lobby — header, footer, checkout — uses only these.
+</p>
+
+<!-- Paper family -->
+<div class="group">
+  <div class="group-label">Paper — canvas</div>
+  <div class="grid">
+    <div class="swatch">
+      <div class="chip" style="background: var(--paper);"></div>
+      <div class="swatch-name">Paper</div>
+      <div class="swatch-var">--paper</div>
+      <div class="swatch-hex">#F1ECE0</div>
+      <div class="swatch-role">Primary canvas. All pages default to this.</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: var(--paper-warm);"></div>
+      <div class="swatch-name">Paper Warm</div>
+      <div class="swatch-var">--paper-warm</div>
+      <div class="swatch-hex">#EDE6D4</div>
+      <div class="swatch-role">Warmer paper for cards and raised sections.</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: var(--paper-cool);"></div>
+      <div class="swatch-name">Paper Cool</div>
+      <div class="swatch-var">--paper-cool</div>
+      <div class="swatch-hex">#ECE9E1</div>
+      <div class="swatch-role">Cooler variant. Subtle alternative surface.</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: var(--paper-deep);"></div>
+      <div class="swatch-name">Paper Deep</div>
+      <div class="swatch-var">--paper-deep</div>
+      <div class="swatch-hex">#DDD5C2</div>
+      <div class="swatch-role">Deepest paper. Annotation strips, sunken sections.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Ink family -->
+<div class="group">
+  <div class="group-label">Ink — marks</div>
+  <div class="grid">
+    <div class="swatch">
+      <div class="chip" style="background: var(--ink);"></div>
+      <div class="swatch-name">Ink</div>
+      <div class="swatch-var">--ink</div>
+      <div class="swatch-hex">#1A1814</div>
+      <div class="swatch-role">Primary text, marks, hairlines. Never pure black.</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: var(--ink-soft);"></div>
+      <div class="swatch-name">Ink Soft</div>
+      <div class="swatch-var">--ink-soft</div>
+      <div class="swatch-hex">#2B2722</div>
+      <div class="swatch-role">Body copy when --ink reads too heavy.</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: var(--ink-mute);"></div>
+      <div class="swatch-name">Ink Mute</div>
+      <div class="swatch-var">--ink-mute</div>
+      <div class="swatch-hex">#6B6359</div>
+      <div class="swatch-role">Secondary text, captions, eyebrow labels.</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: var(--ink-faint);"></div>
+      <div class="swatch-name">Ink Faint</div>
+      <div class="swatch-var">--ink-faint</div>
+      <div class="swatch-hex">#9C9384</div>
+      <div class="swatch-role">Tertiary text, dividers within text, placeholders.</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: var(--ink-line);"></div>
+      <div class="swatch-name">Ink Line</div>
+      <div class="swatch-var">--ink-line</div>
+      <div class="swatch-hex">#1A1814</div>
+      <div class="swatch-role">Hairline rule colour. Always 1px. Equals --ink.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Semantic aliases -->
+<div class="group">
+  <div class="group-label">Semantic aliases — use these in components, not the raw vars above</div>
+  <div class="alias-grid">
+    <div class="alias-row">
+      <div class="alias-chip" style="background: var(--bg);"></div>
+      <div class="alias-info">
+        <div class="alias-token">--bg</div>
+        <div class="alias-points">→ var(--paper)</div>
+        <div class="alias-desc">Page background. Raat overrides to midnight.</div>
+      </div>
+    </div>
+    <div class="alias-row">
+      <div class="alias-chip" style="background: var(--bg-raised);"></div>
+      <div class="alias-info">
+        <div class="alias-token">--bg-raised</div>
+        <div class="alias-points">→ var(--paper-warm)</div>
+        <div class="alias-desc">Raised surfaces — cards, tooltips.</div>
+      </div>
+    </div>
+    <div class="alias-row">
+      <div class="alias-chip" style="background: var(--bg-sunken);"></div>
+      <div class="alias-info">
+        <div class="alias-token">--bg-sunken</div>
+        <div class="alias-points">→ var(--paper-deep)</div>
+        <div class="alias-desc">Sunken or recessed sections.</div>
+      </div>
+    </div>
+    <div class="alias-row">
+      <div class="alias-chip" style="background: var(--fg);"></div>
+      <div class="alias-info">
+        <div class="alias-token">--fg</div>
+        <div class="alias-points">→ var(--ink)</div>
+        <div class="alias-desc">Primary foreground. Raat overrides to paper.</div>
+      </div>
+    </div>
+    <div class="alias-row">
+      <div class="alias-chip" style="background: var(--fg-soft);"></div>
+      <div class="alias-info">
+        <div class="alias-token">--fg-soft</div>
+        <div class="alias-points">→ var(--ink-soft)</div>
+        <div class="alias-desc">Body text foreground.</div>
+      </div>
+    </div>
+    <div class="alias-row">
+      <div class="alias-chip" style="background: var(--fg-mute);"></div>
+      <div class="alias-info">
+        <div class="alias-token">--fg-mute</div>
+        <div class="alias-points">→ var(--ink-mute)</div>
+        <div class="alias-desc">Captions, meta, eyebrow labels.</div>
+      </div>
+    </div>
+    <div class="alias-row">
+      <div class="alias-chip" style="background: var(--fg-faint);"></div>
+      <div class="alias-info">
+        <div class="alias-token">--fg-faint</div>
+        <div class="alias-points">→ var(--ink-faint)</div>
+        <div class="alias-desc">Tertiary text, placeholders.</div>
+      </div>
+    </div>
+    <div class="alias-row">
+      <div class="alias-chip" style="background: var(--rule);"></div>
+      <div class="alias-info">
+        <div class="alias-token">--rule</div>
+        <div class="alias-points">→ var(--ink)</div>
+        <div class="alias-desc">Hairline rule colour. Use at 1px only.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer note -->
+<div style="padding-top: 20px; border-top: 1px solid var(--rule-soft); display:flex; justify-content:space-between;">
+  <span style="font-size:9px; letter-spacing:0.22em; text-transform:uppercase; color:var(--ink-faint);">Meyakara Design System</span>
+  <span style="font-size:9px; letter-spacing:0.22em; text-transform:uppercase; color:var(--ink-faint);">Foundation · Never changes</span>
+</div>
+
+</body>
+</html>

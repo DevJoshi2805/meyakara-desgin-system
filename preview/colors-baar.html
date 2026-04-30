@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colours · Baar — Meyakara Design System</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-serif); padding: 28px 32px; }
+
+.head { padding-bottom: 14px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 22px; }
+.head-row { display: flex; align-items: baseline; gap: 14px; justify-content: space-between; margin-bottom: 6px; }
+.head-name { font-size: 22px; font-weight: 400; display: flex; align-items: baseline; gap: 10px; }
+.head-hi { font-family: var(--font-devanagari); font-size: 17px; color: var(--ink-mute); }
+.head-tag { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-faint); }
+.head-desc { font-size: 12px; color: var(--ink-mute); line-height: 1.55; font-style: italic; max-width: 60ch; }
+.head-quote { font-size: 11px; color: var(--ink-faint); margin-top: 6px; font-style: italic; border-left: 2px solid var(--rule-soft); padding-left: 10px; }
+
+.demo {
+  background: color-mix(in oklab, var(--baar-bleached) 40%, var(--paper));
+  border: 1px solid var(--rule-soft);
+  padding: 20px;
+  margin-bottom: 22px;
+}
+.demo-label { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
+.section-label { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-faint); padding-bottom: 10px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 14px; }
+
+.role-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+.swatch { display: flex; flex-direction: column; gap: 5px; }
+.chip { height: 76px; border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent); }
+.role-tag { font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-faint); }
+.swatch-var { font-family: var(--font-mono); font-size: 9px; color: var(--ink-faint); }
+.swatch-hex { font-family: var(--font-mono); font-size: 9px; color: var(--ink-faint); }
+.swatch-role-desc { font-size: 9px; color: var(--ink-faint); font-style: italic; line-height: 1.4; margin-top: 1px; }
+.swatch--soul .chip { outline: 2px solid var(--ink); outline-offset: -2px; }
+.swatch--soul .role-tag { color: var(--ink-mute); }
+
+.warn {
+  background: var(--paper-warm);
+  border-left: 3px solid var(--baar-tide);
+  padding: 10px 14px;
+  margin-bottom: 18px;
+  font-size: 10px;
+  color: var(--ink-mute);
+  line-height: 1.6;
+}
+
+.extra-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 22px; }
+.extra-chip { height: 40px; border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent); }
+.extra-note { font-size: 9px; color: var(--ink-faint); font-style: italic; line-height: 1.4; margin-top: 5px; }
+
+.code-block {
+  font-family: var(--font-mono); font-size: 10px; color: var(--ink-mute);
+  line-height: 1.7; background: var(--paper-deep); padding: 14px 16px;
+  border: 1px solid var(--rule-soft); margin-bottom: 22px;
+}
+.foot { padding-top: 16px; border-top: 1px solid var(--rule-soft); display: flex; justify-content: space-between; }
+.foot span { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-faint); }
+</style>
+</head>
+<body class="collection-baar">
+
+<div class="head">
+  <div class="head-row">
+    <div class="head-name">Baar <span class="head-hi">बार</span></div>
+    <div class="head-tag">The Beach · Colours Left in the Sun</div>
+  </div>
+  <div class="head-desc">Bleached linen, sun-faded coral, salt grey, driftwood. Colours left in the sun.</div>
+  <div class="head-quote">The beach at 4pm when the crowd has gone.</div>
+</div>
+
+<div class="demo">
+  <div class="demo-label">Section background · atmosphere tint (baar-bleached at 40%)</div>
+
+  <div class="section-label">Role assignments — activate with .collection-baar</div>
+  <div class="role-grid">
+    <div class="swatch">
+      <div class="chip" style="background: var(--accent-tint); border: 1px solid var(--rule-soft);"></div>
+      <div class="role-tag">Atmosphere</div>
+      <div class="swatch-var">--accent-tint → baar-bleached</div>
+      <div class="swatch-hex">#F3EBDA</div>
+      <div class="swatch-role-desc">Sun-bleached surface. Section wash.</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: var(--accent-soft);"></div>
+      <div class="role-tag">Structure</div>
+      <div class="swatch-var">--accent-soft → baar-driftwood</div>
+      <div class="swatch-hex">#8B6F55</div>
+      <div class="swatch-role-desc">Warm worn wood. Borders, card edges.</div>
+    </div>
+    <div class="swatch swatch--soul">
+      <div class="chip" style="background: var(--accent);"></div>
+      <div class="role-tag">Soul ◼</div>
+      <div class="swatch-var">--accent → baar-coral</div>
+      <div class="swatch-hex">#D98A78</div>
+      <div class="swatch-role-desc">Sun-faded coral. Decorative only — see note.</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: var(--accent-deep);"></div>
+      <div class="role-tag">Depth</div>
+      <div class="swatch-var">--accent-deep → baar-tide</div>
+      <div class="swatch-hex">#4F5E5C</div>
+      <div class="swatch-role-desc">Dark tidal water. Use for small interactive text.</div>
+    </div>
+  </div>
+</div>
+
+<div class="warn">
+  <strong>Contrast note — coral soul:</strong> baar-coral (#D98A78) on --paper (#F1ECE0) has a contrast ratio of ≈ 2.8:1.
+  This fails WCAG AA for body-size text. Use coral for display type, decorative borders, and marks only.
+  Reach for baar-tide (--accent-deep, #4F5E5C) when small text or interactive elements need colour on Baar pages.
+</div>
+
+<div class="section-label">Full palette · all five colours</div>
+<div class="extra-grid">
+  <div class="swatch">
+    <div class="extra-chip" style="background: #F3EBDA; border: 1px solid var(--rule-soft);"></div>
+    <div class="swatch-var">baar-bleached</div>
+    <div class="swatch-hex">#F3EBDA</div>
+    <div class="extra-note">→ atmosphere</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #D98A78;"></div>
+    <div class="swatch-var">baar-coral</div>
+    <div class="swatch-hex">#D98A78</div>
+    <div class="extra-note">→ soul (decorative only)</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #B8B5A8;"></div>
+    <div class="swatch-var">baar-salt</div>
+    <div class="swatch-hex">#B8B5A8</div>
+    <div class="extra-note">Unmapped. Neutral mid-tone.</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #8B6F55;"></div>
+    <div class="swatch-var">baar-driftwood</div>
+    <div class="swatch-hex">#8B6F55</div>
+    <div class="extra-note">→ structure</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #4F5E5C;"></div>
+    <div class="swatch-var">baar-tide</div>
+    <div class="swatch-hex">#4F5E5C</div>
+    <div class="extra-note">→ depth · use for small text</div>
+  </div>
+</div>
+
+<div class="section-label">Activation</div>
+<div class="code-block">/* Apply on the collection page or section wrapper. */
+
+&lt;main class="collection-baar"&gt;
+  &lt;!-- --accent      = #D98A78 (baar-coral / soul — decorative only) --&gt;
+  &lt;!-- --accent-soft = #8B6F55 (baar-driftwood / structure)          --&gt;
+  &lt;!-- --accent-deep = #4F5E5C (baar-tide / depth — use for text)    --&gt;
+  &lt;!-- --accent-tint = #F3EBDA (baar-bleached / atmosphere)          --&gt;
+&lt;/main&gt;</div>
+
+<div class="foot">
+  <span>Meyakara Design System</span>
+  <span>Baar · The Beach</span>
+</div>
+
+</body>
+</html>

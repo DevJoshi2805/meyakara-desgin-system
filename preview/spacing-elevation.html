@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Spacing · Elevation</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; align-items: center; }
+  .cell { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .card { width: 150px; height: 96px; background: var(--paper-warm); }
+  .quiet { box-shadow: 0 1px 0 0 color-mix(in oklab, var(--ink) 8%, transparent); border: 1px solid var(--rule-soft);}
+  .raised { box-shadow: 0 12px 28px -18px color-mix(in oklab, var(--ink) 35%, transparent); }
+  .pop { box-shadow: 0 24px 60px -28px color-mix(in oklab, var(--ink) 45%, transparent); }
+  .label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-mute); }
+  .hex { font-family: var(--font-mono); font-size: 11px; color: var(--fg-faint); }
+</style>
+</head>
+<body>
+  <div class="cell"><div class="card quiet"></div><div class="label">Quiet — default</div><div class="hex">hairline + 1px shadow</div></div>
+  <div class="cell"><div class="card raised"></div><div class="label">Raised — overlay</div><div class="hex">--shadow-card</div></div>
+  <div class="cell"><div class="card pop"></div><div class="label">Pop — modal / hero</div><div class="hex">--shadow-pop</div></div>
+</body>
+</html>

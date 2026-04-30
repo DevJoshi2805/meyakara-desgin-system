@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Components · Tag stamp</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: center; }
+  .tag { background: var(--paper-warm); border: 1px solid var(--ink); padding: 18px 22px; max-width: 260px; }
+  .tag .row1 { display: flex; align-items: center; gap: 10px; }
+  .tag img { width: 26px; height: 26px; }
+  .tag .name { font-family: var(--font-serif); font-size: 15px; letter-spacing: 0.05em; }
+  .tag .tagline { font-family: var(--font-serif); font-style: italic; font-size: 12px; color: var(--fg-mute); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--rule-soft); }
+  .tag .meta { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-faint); margin-top: 8px; }
+  .label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-mute); margin-bottom: 8px; }
+  .col { display: flex; flex-direction: column; }
+</style>
+</head>
+<body>
+  <div class="col">
+    <div class="label">Inside-tag stamp</div>
+    <div class="tag">
+      <div class="row1"><img src="../assets/logo-wordmark.svg" alt="" style="height:14px; width:auto;"></div>
+      <div class="tagline">The Shape of Your Escape.</div>
+      <div class="meta">Lino · 04 / 28</div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="label">Collection chip</div>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <span style="font-family:var(--font-serif); font-size:14px; padding:6px 12px; border:1px solid var(--ink);">Dhundh <span style="font-family:var(--font-devanagari); font-size:12px; color:var(--fg-mute);">धुंध</span></span>
+      <span style="font-family:var(--font-serif); font-size:14px; padding:6px 12px; border:1px solid var(--ink);">Baar <span style="font-family:var(--font-devanagari); font-size:12px; color:var(--fg-mute);">बार</span></span>
+      <span style="font-family:var(--font-serif); font-size:14px; padding:6px 12px; border:1px solid var(--ink); background:var(--ink); color:var(--paper);">Raat <span style="font-family:var(--font-devanagari); font-size:12px; color:var(--paper-deep);">रात</span></span>
+      <span style="font-family:var(--font-serif); font-style:italic; font-size:14px; padding:6px 12px; border:1px solid var(--ink);">Mandarin</span>
+      <span style="font-family:var(--font-serif); font-style:italic; font-size:14px; padding:6px 12px; border:1px solid var(--ink);">Lino</span>
+    </div>
+  </div>
+</body>
+</html>

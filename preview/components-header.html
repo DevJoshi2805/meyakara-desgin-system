@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Components · Header</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 0; }
+  .nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 18px 32px; border-bottom: 1px solid var(--ink); }
+  .nav .left, .nav .right { display: flex; gap: 22px; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); }
+  .nav .right { justify-content: flex-end; }
+  .nav .center img { height: 22px; }
+  .below { padding: 20px 32px; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-mute); display: flex; gap: 18px; border-bottom: 1px solid var(--rule-soft);}
+</style>
+</head>
+<body>
+  <div class="nav">
+    <div class="left"><span>Collections</span><span>Journal</span><span>About</span></div>
+    <div class="center"><img src="../assets/logo-wordmark.svg" alt="Meyakara"></div>
+    <div class="right"><span>Search</span><span>Account</span><span>Bag · 2</span></div>
+  </div>
+  <div class="below">
+    <span>Dhundh <span style="font-family:var(--font-devanagari); font-size:12px; letter-spacing:0; text-transform:none; color:var(--fg-faint);">धुंध</span></span>
+    <span>Baar <span style="font-family:var(--font-devanagari); font-size:12px; letter-spacing:0; text-transform:none; color:var(--fg-faint);">बार</span></span>
+    <span>Raat <span style="font-family:var(--font-devanagari); font-size:12px; letter-spacing:0; text-transform:none; color:var(--fg-faint);">रात</span></span>
+    <span>Mandarin</span>
+    <span>Lino</span>
+  </div>
+</body>
+</html>

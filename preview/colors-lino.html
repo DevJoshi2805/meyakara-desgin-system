@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colours · Lino — Meyakara Design System</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-serif); padding: 28px 32px; }
+
+.head { padding-bottom: 14px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 22px; }
+.head-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 6px; }
+.head-name { font-size: 22px; font-weight: 400; font-style: italic; }
+.head-tag { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-faint); }
+.head-desc { font-size: 12px; color: var(--ink-mute); line-height: 1.55; font-style: italic; max-width: 60ch; }
+.head-quote { font-size: 11px; color: var(--ink-faint); margin-top: 6px; font-style: italic; border-left: 2px solid var(--rule-soft); padding-left: 10px; }
+
+/* Atmosphere demo wrapper */
+.demo {
+  background: color-mix(in oklab, var(--lino-sun) 18%, var(--paper));
+  border: 1px solid var(--rule-soft);
+  padding: 20px;
+  margin-bottom: 22px;
+}
+.demo-label { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
+
+.section-label { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-faint); padding-bottom: 10px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 14px; }
+
+/* Role grid — 4 mapped colours */
+.role-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+.swatch { display: flex; flex-direction: column; gap: 5px; }
+.chip { height: 76px; border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent); }
+.role-tag { font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-faint); }
+.swatch-var { font-family: var(--font-mono); font-size: 9px; color: var(--ink-faint); }
+.swatch-hex { font-family: var(--font-mono); font-size: 9px; color: var(--ink-faint); }
+.swatch-role-desc { font-size: 9px; color: var(--ink-faint); font-style: italic; line-height: 1.4; margin-top: 1px; }
+
+/* Soul indicator */
+.swatch--soul .chip { outline: 2px solid var(--ink); outline-offset: -2px; }
+.swatch--soul .role-tag { color: var(--ink-mute); }
+
+/* Extra palette swatches (not mapped to role pointers) */
+.extra-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 22px; }
+.extra-chip { height: 40px; border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent); }
+.extra-note { font-size: 9px; color: var(--ink-faint); font-style: italic; line-height: 1.4; margin-top: 5px; }
+
+/* Code */
+.code-block {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ink-mute);
+  line-height: 1.7;
+  background: var(--paper-deep);
+  padding: 14px 16px;
+  border: 1px solid var(--rule-soft);
+  margin-bottom: 22px;
+}
+
+.foot { padding-top: 16px; border-top: 1px solid var(--rule-soft); display: flex; justify-content: space-between; }
+.foot span { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-faint); }
+</style>
+</head>
+<body class="collection-lino">
+
+<div class="head">
+  <div class="head-row">
+    <div class="head-name">Lino</div>
+    <div class="head-tag">Italian Linen · Slow Sunday · System Default</div>
+  </div>
+  <div class="head-desc">Sun cream, warm stone, dusty terracotta, faded olive. The colours of a slow Sunday.</div>
+  <div class="head-quote">A slow Sunday. Italian linen trousers falling cleanly at a pavement café in Bombay — that is an escape.</div>
+</div>
+
+<!-- Role swatches — using var() so they test the CSS class -->
+<div class="demo">
+  <div class="demo-label">Section background · atmosphere tint at 18% opacity</div>
+
+  <div class="section-label">Role assignments — activate with .collection-lino</div>
+  <div class="role-grid">
+    <div class="swatch">
+      <div class="chip" style="background: var(--accent-tint);"></div>
+      <div class="role-tag">Atmosphere</div>
+      <div class="swatch-var">--accent-tint → lino-sun</div>
+      <div class="swatch-hex">#E2C77F</div>
+      <div class="swatch-role-desc">Afternoon light. Large surface washes.</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: var(--accent-soft);"></div>
+      <div class="role-tag">Structure</div>
+      <div class="swatch-var">--accent-soft → lino-stone</div>
+      <div class="swatch-hex">#C9B89A</div>
+      <div class="swatch-role-desc">Warm gravel. Borders, card dividers.</div>
+    </div>
+    <div class="swatch swatch--soul">
+      <div class="chip" style="background: var(--accent);"></div>
+      <div class="role-tag">Soul ◼</div>
+      <div class="swatch-var">--accent → lino-terracotta</div>
+      <div class="swatch-hex">#B26B4A</div>
+      <div class="swatch-role-desc">Earthy, specific. CTAs, key emphasis.</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: var(--accent-deep);"></div>
+      <div class="role-tag">Depth</div>
+      <div class="swatch-var">--accent-deep → lino-olive</div>
+      <div class="swatch-hex">#7E7A4A</div>
+      <div class="swatch-role-desc">Cool counterpoint to terracotta.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Full palette — all 5 colours -->
+<div class="section-label">Full palette · all five colours</div>
+<div class="extra-grid">
+  <div class="swatch">
+    <div class="extra-chip" style="background: #E2C77F;"></div>
+    <div class="swatch-var">lino-sun</div>
+    <div class="swatch-hex">#E2C77F</div>
+    <div class="extra-note">→ atmosphere</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #F0E6D0; border: 1px solid var(--rule-soft);"></div>
+    <div class="swatch-var">lino-cream</div>
+    <div class="swatch-hex">#F0E6D0</div>
+    <div class="extra-note">Unmapped. Close to paper-warm.</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #C9B89A;"></div>
+    <div class="swatch-var">lino-stone</div>
+    <div class="swatch-hex">#C9B89A</div>
+    <div class="extra-note">→ structure</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #B26B4A;"></div>
+    <div class="swatch-var">lino-terracotta</div>
+    <div class="swatch-hex">#B26B4A</div>
+    <div class="extra-note">→ soul</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #7E7A4A;"></div>
+    <div class="swatch-var">lino-olive</div>
+    <div class="swatch-hex">#7E7A4A</div>
+    <div class="extra-note">→ depth</div>
+  </div>
+</div>
+
+<!-- Activation code -->
+<div class="section-label">Activation</div>
+<div class="code-block">/* Apply on the collection page or section wrapper.
+   Header and footer must remain outside. */
+
+&lt;main class="collection-lino"&gt;
+  &lt;!-- accent vars now resolve to Lino palette --&gt;
+  &lt;!-- --accent = #B26B4A (terracotta / soul)  --&gt;
+&lt;/main&gt;
+
+/* Lino is the system default for active collection contexts.
+   :root default is foundation (--ink) — not Lino. */</div>
+
+<div class="foot">
+  <span>Meyakara Design System</span>
+  <span>Lino · System default collection</span>
+</div>
+
+</body>
+</html>

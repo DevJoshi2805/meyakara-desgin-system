@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colours · Raat — Meyakara Design System</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* collection-raat on body inverts the foundation.
+   This page IS the demonstration — it runs dark. */
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-serif);
+  padding: 28px 32px;
+}
+
+.head { padding-bottom: 14px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 22px; }
+.head-row { display: flex; align-items: baseline; gap: 14px; justify-content: space-between; margin-bottom: 6px; }
+.head-name { font-size: 22px; font-weight: 400; display: flex; align-items: baseline; gap: 10px; }
+.head-hi { font-family: var(--font-devanagari); font-size: 17px; color: var(--fg-mute); }
+.head-tag { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-faint); }
+.head-desc { font-size: 12px; color: var(--fg-mute); line-height: 1.55; font-style: italic; max-width: 60ch; }
+.head-quote { font-size: 11px; color: var(--fg-faint); margin-top: 6px; font-style: italic; border-left: 2px solid var(--rule-soft); padding-left: 10px; }
+
+/* Inversion callout — prominent */
+.inversion-note {
+  border: 1px solid var(--raat-gold);
+  padding: 14px 16px;
+  margin-bottom: 22px;
+  font-size: 11px;
+  color: var(--fg-mute);
+  line-height: 1.6;
+}
+.inversion-note strong { color: var(--raat-gold); font-weight: 400; font-style: italic; }
+
+.demo {
+  background: var(--raat-smoke);
+  border: 1px solid var(--rule-soft);
+  padding: 20px;
+  margin-bottom: 22px;
+}
+.demo-label { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--fg-faint); margin-bottom: 14px; }
+.section-label {
+  font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--fg-faint); padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule-soft); margin-bottom: 14px;
+}
+
+.role-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+.swatch { display: flex; flex-direction: column; gap: 5px; }
+.chip { height: 76px; border: 1px solid color-mix(in oklab, var(--fg) 15%, transparent); }
+.role-tag { font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--fg-faint); }
+.swatch-var { font-family: var(--font-mono); font-size: 9px; color: var(--fg-faint); }
+.swatch-hex { font-family: var(--font-mono); font-size: 9px; color: var(--fg-faint); }
+.swatch-role-desc { font-size: 9px; color: var(--fg-faint); font-style: italic; line-height: 1.4; margin-top: 1px; }
+/* Soul outlined in paper on dark background */
+.swatch--soul .chip { outline: 2px solid var(--fg); outline-offset: -2px; }
+.swatch--soul .role-tag { color: var(--fg-mute); }
+
+.extra-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 22px; }
+.extra-chip { height: 40px; border: 1px solid color-mix(in oklab, var(--fg) 15%, transparent); }
+.extra-note { font-size: 9px; color: var(--fg-faint); font-style: italic; line-height: 1.4; margin-top: 5px; }
+
+.code-block {
+  font-family: var(--font-mono); font-size: 10px; color: var(--fg-mute);
+  line-height: 1.7; background: var(--raat-midnight); padding: 14px 16px;
+  border: 1px solid var(--rule-soft); margin-bottom: 22px;
+}
+
+/* Contrast table */
+.contrast-table { width: 100%; border-collapse: collapse; margin-bottom: 22px; }
+.contrast-table th {
+  text-align: left; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--fg-faint); padding: 0 12px var(--s-3) 0;
+  border-bottom: 1px solid var(--rule-soft); font-weight: 400;
+}
+.contrast-table td {
+  font-size: 10px; padding: 8px 12px 8px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  color: var(--fg-mute); vertical-align: middle;
+}
+.contrast-table td:first-child { font-family: var(--font-mono); font-size: 9px; }
+.contrast-pass { color: var(--raat-gold) !important; }
+.contrast-warn { color: var(--fg-faint) !important; font-style: italic; }
+
+.foot { padding-top: 16px; border-top: 1px solid var(--rule-soft); display: flex; justify-content: space-between; }
+.foot span { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-faint); }
+</style>
+</head>
+<!-- The collection-raat class on body inverts the foundation.
+     This is the only collection that does this.
+     Header and footer on real pages must sit OUTSIDE this wrapper. -->
+<body class="collection-raat">
+
+<div class="head">
+  <div class="head-row">
+    <div class="head-name">Raat <span class="head-hi">रात</span></div>
+    <div class="head-tag">Nightlife · The Hour Before</div>
+  </div>
+  <div class="head-desc">Midnight black, electric violet, warm gold, the bleed. Colours of the hour before.</div>
+  <div class="head-quote">The escape that lives in the night — and comes back knowing exactly who she is.</div>
+</div>
+
+<div class="inversion-note">
+  <strong>Foundation inverts on this collection.</strong>
+  Raat is the only collection that overrides <code style="font-family:var(--font-mono); font-size:0.9em;">--bg</code> and <code style="font-family:var(--font-mono); font-size:0.9em;">--fg</code>.
+  This page is running dark to demonstrate that. On a real storefront, apply <code style="font-family:var(--font-mono); font-size:0.9em;">.collection-raat</code>
+  on the <code style="font-family:var(--font-mono); font-size:0.9em;">&lt;main&gt;</code> element only — never on <code style="font-family:var(--font-mono); font-size:0.9em;">&lt;header&gt;</code> or <code style="font-family:var(--font-mono); font-size:0.9em;">&lt;footer&gt;</code>.
+  The lobby (brand chrome) must always remain paper and ink.
+</div>
+
+<div class="demo">
+  <div class="demo-label">Section background · raat-smoke (--accent-tint)</div>
+
+  <div class="section-label">Role assignments — activate with .collection-raat</div>
+  <div class="role-grid">
+    <div class="swatch">
+      <div class="chip" style="background: var(--accent-tint);"></div>
+      <div class="role-tag">Atmosphere</div>
+      <div class="swatch-var">--accent-tint → raat-smoke</div>
+      <div class="swatch-hex">#1F1B2A</div>
+      <div class="swatch-role-desc">The room. Dark surface wash, raised sections.</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: var(--accent-soft);"></div>
+      <div class="role-tag">Structure</div>
+      <div class="swatch-var">--accent-soft → raat-violet</div>
+      <div class="swatch-hex">#5B3AC7</div>
+      <div class="swatch-role-desc">Electric. Decorative only — ≈ 3.8:1 on midnight.</div>
+    </div>
+    <div class="swatch swatch--soul">
+      <div class="chip" style="background: var(--accent);"></div>
+      <div class="role-tag">Soul ◼</div>
+      <div class="swatch-var">--accent → raat-gold</div>
+      <div class="swatch-hex">#C9A24A</div>
+      <div class="swatch-role-desc">Warm light in darkness. ≈ 6:1 on midnight. CTAs.</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: var(--accent-deep);"></div>
+      <div class="role-tag">Depth</div>
+      <div class="swatch-var">--accent-deep → raat-bleed</div>
+      <div class="swatch-hex">#8E2A6A</div>
+      <div class="swatch-role-desc">The bleed between violet and warmth.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Contrast reference — critical for dark collections -->
+<div class="section-label">Contrast on midnight (#0A0A12)</div>
+<table class="contrast-table">
+  <thead>
+    <tr>
+      <th>Colour</th>
+      <th>Variable</th>
+      <th>Ratio</th>
+      <th>Usable for</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>#C9A24A — gold</td>
+      <td style="color:var(--fg-faint);">--accent (soul)</td>
+      <td class="contrast-pass">≈ 6:1 ✓</td>
+      <td>CTAs, buttons, key labels. AA compliant.</td>
+    </tr>
+    <tr>
+      <td>#F1ECE0 — paper</td>
+      <td style="color:var(--fg-faint);">--fg override</td>
+      <td class="contrast-pass">≈ 16:1 ✓</td>
+      <td>All body and display text.</td>
+    </tr>
+    <tr>
+      <td>#C7B89A — silk</td>
+      <td style="color:var(--fg-faint);">--fg-soft override</td>
+      <td class="contrast-pass">≈ 9.8:1 ✓</td>
+      <td>Body copy, secondary text on dark.</td>
+    </tr>
+    <tr>
+      <td>#5B3AC7 — violet</td>
+      <td style="color:var(--fg-faint);">--accent-soft</td>
+      <td class="contrast-warn">≈ 3.8:1 ✗</td>
+      <td>Decorative borders and marks only. Not for text.</td>
+    </tr>
+    <tr>
+      <td>#8E2A6A — bleed</td>
+      <td style="color:var(--fg-faint);">--accent-deep</td>
+      <td class="contrast-warn">≈ 2.9:1 ✗</td>
+      <td>Decorative accents only. Not for text.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="section-label">Full palette · all five colours</div>
+<div class="extra-grid">
+  <div class="swatch">
+    <div class="extra-chip" style="background: #0A0A12; border: 1px solid color-mix(in oklab, var(--fg) 20%, transparent);"></div>
+    <div class="swatch-var">raat-midnight</div>
+    <div class="swatch-hex">#0A0A12</div>
+    <div class="extra-note">→ --bg override</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #1F1B2A;"></div>
+    <div class="swatch-var">raat-smoke</div>
+    <div class="swatch-hex">#1F1B2A</div>
+    <div class="extra-note">→ atmosphere · --bg-raised</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #5B3AC7;"></div>
+    <div class="swatch-var">raat-violet</div>
+    <div class="swatch-hex">#5B3AC7</div>
+    <div class="extra-note">→ structure (decorative only)</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #8E2A6A;"></div>
+    <div class="swatch-var">raat-bleed</div>
+    <div class="swatch-hex">#8E2A6A</div>
+    <div class="extra-note">→ depth (decorative only)</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #C9A24A;"></div>
+    <div class="swatch-var">raat-gold</div>
+    <div class="swatch-hex">#C9A24A</div>
+    <div class="extra-note">→ soul · only CTA-safe colour</div>
+  </div>
+</div>
+
+<div class="section-label">Activation</div>
+<div class="code-block">/* Raat overrides the foundation. Apply on &lt;main&gt; only.
+   NEVER on &lt;header&gt; or &lt;footer&gt; — lobby stays paper/ink. */
+
+&lt;header class="mk-lobby"&gt; … &lt;/header&gt;   &lt;!-- paper · ink · always --&gt;
+
+&lt;main class="collection-raat"&gt;
+  &lt;!-- --bg           = #0A0A12 (raat-midnight)          --&gt;
+  &lt;!-- --fg           = var(--paper) — foundation flipped --&gt;
+  &lt;!-- --accent       = #C9A24A (raat-gold / soul)        --&gt;
+  &lt;!-- --accent-soft  = #5B3AC7 (raat-violet / decorative) --&gt;
+  &lt;!-- --accent-deep  = #8E2A6A (raat-bleed / decorative)  --&gt;
+  &lt;!-- --accent-tint  = #1F1B2A (raat-smoke / atmosphere)  --&gt;
+&lt;/main&gt;
+
+&lt;footer class="mk-lobby"&gt; … &lt;/footer&gt;  &lt;!-- paper · ink · always --&gt;</div>
+
+<div class="foot">
+  <span>Meyakara Design System</span>
+  <span>Raat · Foundation inverts · Lobby stays paper/ink</span>
+</div>
+
+</body>
+</html>

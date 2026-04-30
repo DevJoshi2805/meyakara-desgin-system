@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Components · Buttons</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px; align-items: center; }
+  .cell { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+  .label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-mute); }
+  .btn { font-family: var(--font-serif); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; padding: 13px 22px; border: 1px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; }
+  .btn--solid { background: var(--ink); color: var(--paper); }
+  .btn--ghost { border-color: transparent; padding: 13px 0; }
+  .btn--link { border: 0; padding: 0; background: transparent; border-bottom: 1px solid var(--ink); padding-bottom: 2px; font-family: var(--font-serif); font-size: 13px; letter-spacing: 0; text-transform: none; }
+</style>
+</head>
+<body>
+  <div class="cell"><div class="label">Outlined — default</div><button class="btn">Find your shape</button></div>
+  <div class="cell"><div class="label">Solid — primary</div><button class="btn btn--solid">Enter the collection</button></div>
+  <div class="cell"><div class="label">Ghost — tertiary</div><button class="btn btn--ghost">View all → </button></div>
+  <div class="cell"><div class="label">Inline link</div><a href="#" class="btn--link">Read the journal</a></div>
+</body>
+</html>

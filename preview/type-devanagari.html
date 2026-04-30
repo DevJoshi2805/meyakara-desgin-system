@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Type · Devanagari</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 28px 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; }
+  .meta { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-mute); margin-bottom: 10px; }
+  .hi-display { font-family: var(--font-devanagari); font-size: 56px; line-height: 1.15; }
+  .hi-body { font-family: var(--font-devanagari); font-size: 19px; line-height: 1.65; color: var(--fg-soft); max-width: 22ch; }
+  .pair { display: flex; gap: 18px; align-items: baseline; }
+  .pair .latin { font-family: var(--font-serif); font-style: italic; font-size: 22px; color: var(--fg-mute); }
+</style>
+</head>
+<body>
+  <div>
+    <div class="meta">Tiro Devanagari Hindi · Display</div>
+    <div class="hi-display">धुंध · बार · रात</div>
+    <div class="pair" style="margin-top:10px"><div class="latin">Dhundh · Baar · Raat</div></div>
+  </div>
+  <div>
+    <div class="meta">Body · 19 / 1.65</div>
+    <p class="hi-body">मेरा आकार। मेरा फिट। मेरा एस्केप।</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colours · Mandarin — Meyakara Design System</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-serif); padding: 28px 32px; }
+
+.head { padding-bottom: 14px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 22px; }
+.head-row { display: flex; align-items: baseline; gap: 14px; justify-content: space-between; margin-bottom: 6px; }
+.head-name { font-size: 22px; font-weight: 400; font-style: italic; }
+.head-tag { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-faint); }
+.head-desc { font-size: 12px; color: var(--ink-mute); line-height: 1.55; font-style: italic; max-width: 60ch; }
+.head-quote { font-size: 11px; color: var(--ink-faint); margin-top: 6px; font-style: italic; border-left: 2px solid var(--rule-soft); padding-left: 10px; }
+
+.demo {
+  background: color-mix(in oklab, var(--mandarin-silk) 22%, var(--paper));
+  border: 1px solid var(--rule-soft);
+  padding: 20px;
+  margin-bottom: 22px;
+}
+.demo-label { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
+.section-label { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-faint); padding-bottom: 10px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 14px; }
+
+.role-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+.swatch { display: flex; flex-direction: column; gap: 5px; }
+.chip { height: 76px; border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent); }
+.role-tag { font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-faint); }
+.swatch-var { font-family: var(--font-mono); font-size: 9px; color: var(--ink-faint); }
+.swatch-hex { font-family: var(--font-mono); font-size: 9px; color: var(--ink-faint); }
+.swatch-role-desc { font-size: 9px; color: var(--ink-faint); font-style: italic; line-height: 1.4; margin-top: 1px; }
+.swatch--soul .chip { outline: 2px solid var(--ink); outline-offset: -2px; }
+.swatch--soul .role-tag { color: var(--ink-mute); }
+
+.extra-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 22px; }
+.extra-chip { height: 40px; border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent); }
+.extra-note { font-size: 9px; color: var(--ink-faint); font-style: italic; line-height: 1.4; margin-top: 5px; }
+
+.code-block {
+  font-family: var(--font-mono); font-size: 10px; color: var(--ink-mute);
+  line-height: 1.7; background: var(--paper-deep); padding: 14px 16px;
+  border: 1px solid var(--rule-soft); margin-bottom: 22px;
+}
+.foot { padding-top: 16px; border-top: 1px solid var(--rule-soft); display: flex; justify-content: space-between; }
+.foot span { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-faint); }
+</style>
+</head>
+<body class="collection-mandarin">
+
+<div class="head">
+  <div class="head-row">
+    <div class="head-name">Mandarin</div>
+    <div class="head-tag">The Collar · Colours of Restraint</div>
+  </div>
+  <div class="head-desc">Ink blue, aged ivory, slate, worn silk. The colours of restraint.</div>
+  <div class="head-quote">The Mandarin collar has centuries of distinction pressed into its fold.</div>
+</div>
+
+<div class="demo">
+  <div class="demo-label">Section background · atmosphere tint (mandarin-silk at 22%)</div>
+
+  <div class="section-label">Role assignments — activate with .collection-mandarin</div>
+  <div class="role-grid">
+    <div class="swatch">
+      <div class="chip" style="background: var(--accent-tint);"></div>
+      <div class="role-tag">Atmosphere</div>
+      <div class="swatch-var">--accent-tint → mandarin-silk</div>
+      <div class="swatch-hex">#C7B89A</div>
+      <div class="swatch-role-desc">Aged cloth. Warm ivory surface wash.</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: var(--accent-soft);"></div>
+      <div class="role-tag">Structure</div>
+      <div class="swatch-var">--accent-soft → mandarin-slate</div>
+      <div class="swatch-hex">#5B6772</div>
+      <div class="swatch-role-desc">Cool disciplined grey-blue. Borders, UI structure.</div>
+    </div>
+    <div class="swatch swatch--soul">
+      <div class="chip" style="background: var(--accent);"></div>
+      <div class="role-tag">Soul ◼</div>
+      <div class="swatch-var">--accent → mandarin-ink</div>
+      <div class="swatch-hex">#1B2A4A</div>
+      <div class="swatch-role-desc">Deep navy. ≈ 10:1 on paper. The authority of the collar.</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: var(--accent-deep);"></div>
+      <div class="role-tag">Depth</div>
+      <div class="swatch-var">--accent-deep → mandarin-deep</div>
+      <div class="swatch-hex">#11182B</div>
+      <div class="swatch-role-desc">Absolute navy. Maximum contrast moments.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-label">Full palette · all five colours</div>
+<div class="extra-grid">
+  <div class="swatch">
+    <div class="extra-chip" style="background: #E9E1CC; border: 1px solid var(--rule-soft);"></div>
+    <div class="swatch-var">mandarin-ivory</div>
+    <div class="swatch-hex">#E9E1CC</div>
+    <div class="extra-note">Unmapped. Aged ivory, close to paper-warm.</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #C7B89A;"></div>
+    <div class="swatch-var">mandarin-silk</div>
+    <div class="swatch-hex">#C7B89A</div>
+    <div class="extra-note">→ atmosphere</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #5B6772;"></div>
+    <div class="swatch-var">mandarin-slate</div>
+    <div class="swatch-hex">#5B6772</div>
+    <div class="extra-note">→ structure</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #1B2A4A;"></div>
+    <div class="swatch-var">mandarin-ink</div>
+    <div class="swatch-hex">#1B2A4A</div>
+    <div class="extra-note">→ soul</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #11182B;"></div>
+    <div class="swatch-var">mandarin-deep</div>
+    <div class="swatch-hex">#11182B</div>
+    <div class="extra-note">→ depth</div>
+  </div>
+</div>
+
+<div class="section-label">Activation</div>
+<div class="code-block">/* Apply on the collection page or section wrapper. */
+
+&lt;main class="collection-mandarin"&gt;
+  &lt;!-- --accent      = #1B2A4A (mandarin-ink / soul — ≈10:1 contrast) --&gt;
+  &lt;!-- --accent-soft = #5B6772 (mandarin-slate / structure)            --&gt;
+  &lt;!-- --accent-deep = #11182B (mandarin-deep / depth)                 --&gt;
+  &lt;!-- --accent-tint = #C7B89A (mandarin-silk / atmosphere)            --&gt;
+&lt;/main&gt;</div>
+
+<div class="foot">
+  <span>Meyakara Design System</span>
+  <span>Mandarin · The Collar</span>
+</div>
+
+</body>
+</html>

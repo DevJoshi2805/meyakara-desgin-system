@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Lobby — Meyakara Design System</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-serif);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* ── HEADER (lobby) ── */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--paper);
+}
+.site-nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 16px 40px;
+  border-bottom: 1px solid var(--ink);
+}
+.site-nav__left,
+.site-nav__right {
+  display: flex;
+  gap: 24px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.site-nav__right { justify-content: flex-end; }
+.site-nav__center img { height: 20px; display: block; }
+
+.site-subnav {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 12px 40px;
+  border-bottom: 1px solid var(--rule-soft);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+.subnav-name { color: var(--ink); }
+.subnav-hi {
+  font-family: var(--font-devanagari);
+  font-size: 13px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--fg-faint);
+}
+.subnav-sep { color: var(--fg-faint); margin: 0 6px; }
+
+/* ── ANNOTATION STRIPS ── */
+.anno {
+  background: var(--paper-deep);
+  border-top: 1px solid var(--rule-soft);
+  border-bottom: 1px solid var(--rule-soft);
+  padding: 10px 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.anno__line {
+  flex: 1;
+  height: 1px;
+  background: var(--ink-faint);
+}
+.anno__text {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+/* ── COLLECTION SECTIONS ── */
+.col-section {
+  padding: 72px 40px 88px;
+  border-bottom: 1px solid var(--rule-soft);
+  /* subtle atmosphere tint as section bg */
+  background: color-mix(in oklab, var(--accent-tint) 20%, var(--paper));
+}
+
+/* Raat overrides section bg */
+.collection-raat .col-section {
+  background: transparent;
+  border-bottom-color: var(--rule-soft);
+}
+
+.col-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* left column */
+.col-left { display: flex; flex-direction: column; gap: 20px; }
+
+.col-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+.col-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+.col-hindi {
+  font-family: var(--font-devanagari);
+  font-size: 15px;
+  letter-spacing: 0;
+  color: var(--fg-faint);
+}
+
+.col-display {
+  font-size: clamp(28px, 3.2vw, 42px);
+  line-height: 1.08;
+  letter-spacing: -0.005em;
+  font-weight: 400;
+  color: var(--fg);
+  max-width: 18ch;
+}
+
+.col-note {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--fg-mute);
+  font-style: italic;
+  max-width: 36ch;
+  margin: 0;
+}
+.col-note--warn {
+  color: var(--fg-mute);
+  border-left: 2px solid var(--accent-deep);
+  padding-left: 10px;
+}
+
+.col-btn {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-serif);
+  font-size: 11px;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  padding: 12px 22px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  background: transparent;
+  cursor: pointer;
+  transition: background 200ms, color 200ms;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+.col-btn:hover {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+/* right column — palette */
+.col-right { display: flex; flex-direction: column; gap: 28px; }
+
+.col-palette {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.swatch { display: flex; flex-direction: column; gap: 6px; }
+.swatch__chip {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+}
+.swatch--tint   .swatch__chip { background: var(--accent-tint); }
+.swatch--soft   .swatch__chip { background: var(--accent-soft); }
+.swatch--accent .swatch__chip { background: var(--accent); }
+.swatch--deep   .swatch__chip { background: var(--accent-deep); }
+
+.swatch__role {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+.swatch__name {
+  font-size: 10px;
+  color: var(--fg-faint);
+  font-style: italic;
+}
+
+/* soul call-out */
+.col-soul-rule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.col-soul-bar {
+  width: 32px;
+  height: 3px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.col-soul-text {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--fg-mute);
+  font-style: italic;
+}
+
+/* ── FOOTER (lobby) ── */
+.site-footer {
+  border-top: 1px solid var(--ink);
+  padding: 52px 40px 28px;
+  background: var(--paper);
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.footer-brand img { height: 22px; display: block; margin-bottom: 10px; }
+.footer-tag { font-style: italic; font-size: 13px; color: var(--fg-mute); }
+.footer-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--fg-soft);
+}
+.footer-col-head {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  margin-bottom: 4px;
+}
+.footer-bot {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--fg-mute);
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- THE LOBBY — sticky header. Paper and ink. No accent ever.  -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<header class="site-header mk-lobby">
+  <nav class="site-nav">
+    <div class="site-nav__left">
+      <span>Collections</span>
+      <span>Journal</span>
+      <span>About</span>
+    </div>
+    <div class="site-nav__center">
+      <img src="../assets/logo-wordmark.svg" alt="Meyakara">
+    </div>
+    <div class="site-nav__right">
+      <span>Search</span>
+      <span>Account</span>
+      <span>Bag · 0</span>
+    </div>
+  </nav>
+  <div class="site-subnav">
+    <span class="subnav-name">Dhundh</span>
+    <span class="subnav-hi">धुंध</span>
+    <span class="subnav-sep">·</span>
+    <span class="subnav-name">Baar</span>
+    <span class="subnav-hi">बार</span>
+    <span class="subnav-sep">·</span>
+    <span class="subnav-name">Raat</span>
+    <span class="subnav-hi">रात</span>
+    <span class="subnav-sep">·</span>
+    <span class="subnav-name">Mandarin</span>
+    <span class="subnav-sep">·</span>
+    <span class="subnav-name">Lino</span>
+  </div>
+</header>
+
+<!-- annotation -->
+<div class="anno">
+  <div class="anno__line"></div>
+  <span class="anno__text">Brand chrome — paper · ink · no collection accent · always</span>
+  <div class="anno__line"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- COLLECTION TERRITORY                                        -->
+<!-- Scroll here — the header above stays paper/ink throughout  -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<!-- LINO -->
+<div class="collection-lino">
+  <div class="col-section">
+    <div class="col-inner">
+      <div class="col-left">
+        <div class="col-meta">
+          <span class="col-eyebrow">Lino</span>
+        </div>
+        <h2 class="col-display">The colours of<br>a slow Sunday.</h2>
+        <p class="col-note">
+          Sun cream, warm stone, dusty terracotta, faded olive.
+          A terrace in the afternoon. Time with nowhere to go.
+        </p>
+        <button class="col-btn">Explore Lino</button>
+      </div>
+      <div class="col-right">
+        <div class="col-palette">
+          <div class="swatch swatch--tint">
+            <div class="swatch__chip"></div>
+            <span class="swatch__role">Atmosphere</span>
+            <span class="swatch__name">lino-sun</span>
+          </div>
+          <div class="swatch swatch--soft">
+            <div class="swatch__chip"></div>
+            <span class="swatch__role">Structure</span>
+            <span class="swatch__name">lino-stone</span>
+          </div>
+          <div class="swatch swatch--accent">
+            <div class="swatch__chip"></div>
+            <span class="swatch__role">Soul</span>
+            <span class="swatch__name">lino-terracotta</span>
+          </div>
+          <div class="swatch swatch--deep">
+            <div class="swatch__chip"></div>
+            <span class="swatch__role">Depth</span>
+            <span class="swatch__name">lino-olive</span>
+          </div>
+        </div>
+        <div class="col-soul-rule">
+          <div class="col-soul-bar"></div>
+          <span class="col-soul-text">Soul · terracotta is earthy and specific — no other collection could borrow it.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DHUNDH -->
+<div class="collection-dhundh">
+  <div class="col-section">
+    <div class="col-inner">
+      <div class="col-left">
+        <div class="col-meta">
+          <span class="col-eyebrow">Dhundh</span>
+          <span class="col-hindi">धुंध</span>
+        </div>
+        <h2 class="col-display">The 6am<br>ridge line.</h2>
+        <p class="col-note">
+          Fog white, cool blue-grey, muted pine, stone.
+          The colour of standing very still before the world wakes.
+        </p>
+        <button class="col-btn">Explore Dhundh</button>
+      </div>
+      <div class="col-right">
+        <div class="col-palette">
+          <div class="swatch swatch--tint">
+            <div class="swatch__chip"></div>
+            <span class="swatch__role">Atmosphere</span>
+            <span class="swatch__name">dhundh-fog</span>
+          </div>
+          <div class="swatch swatch--soft">
+            <div class="swatch__chip"></div>
+            <span class="swatch__role">Structure</span>
+            <span class="swatch__name">dhundh-blue-grey</span>
+          </div>
+          <div class="swatch swatch--accent">
+            <div class="swatch__chip"></div>
+            <span class="swatch__role">Soul</span>
+            <span class="swatch__name">dhundh-pine</span>
+          </div>
+          <div class="swatch swatch--deep">
+            <div class="swatch__chip"></div>
+            <span class="swatch__role">Depth</span>
+            <span class="swatch__name">dhundh-deep</span>
+          </div>
+        </div>
+        <div class="col-soul-rule">
+          <div class="col-soul-bar"></div>
+          <span class="col-soul-text">Soul · pine is permanent, dark, specific — the colour that names the hill.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BAAR -->
+<div class="collection-baar">
+  <div class="col-section">
+    <div class="col-inner">
+      <div class="col-left">
+        <div class="col-meta">
+          <span class="col-eyebrow">Baar</span>
+          <span class="col-hindi">बार</span>
+        </div>
+        <h2 class="col-display">Colours left<br>in the sun.</h2>
+        <p class="col-note">
+          Bleached linen, sun-faded coral, salt grey, driftwood.
+          The beach at 4pm when the crowd has gone.
+        </p>
+        <p class="col-note col-note--warn" style="margin-top:8px;">
+          Coral (soul) is decorative only on paper — contrast ≈ 2.8:1.
+          Use tide (depth) for small interactive text on Baar pages.
+        </p>
+        <button class="col-btn">Explore Baar</button>
+      </div>
+      <div class="col-right">
+        <div class="col-palette">
+          <div class="swatch swatch--tint">
+            <div class="swatch__chip"></div>
+            <span class="swatch__role">Atmosphere</span>
+            <span class="swatch__name">baar-bleached</span>
+          </div>
+          <div class="swatch swatch--soft">
+            <div class="swatch__chip"></div>
+            <span class="swatch__role">Structure</span>
+            <span class="swatch__name">baar-driftwood</span>
+          </div>
+          <div class="swatch swatch--accent">
+            <div class="swatch__chip"></div>
+            <span class="swatch__role">Soul</span>
+            <span class="swatch__name">baar-coral</span>
+          </div>
+          <div class="swatch swatch--deep">
+            <div class="swatch__chip"></div>
+            <span class="swatch__role">Depth</span>
+            <span class="swatch__name">baar-tide</span>
+          </div>
+        </div>
+        <div class="col-soul-rule">
+          <div class="col-soul-bar"></div>
+          <span class="col-soul-text">Soul · sun-faded coral. No other palette in this system could wear it.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MANDARIN -->
+<div class="collection-mandarin">
+  <div class="col-section">
+    <div class="col-inner">
+      <div class="col-left">
+        <div class="col-meta">
+          <span class="col-eyebrow">Mandarin</span>
+        </div>
+        <h2 class="col-display">The colours<br>of restraint.</h2>
+        <p class="col-note">
+          Ink blue, aged ivory, slate, worn silk.
+          Centuries of distinction pressed into a single fold.
+        </p>
+        <button class="col-btn">Explore Mandarin</button>
+      </div>
+      <div class="col-right">
+        <div class="col-palette">
+          <div class="swatch swatch--tint">
+            <div class="swatch__chip"></div>
+            <span class="swatch__role">Atmosphere</span>
+            <span class="swatch__name">mandarin-silk</span>
+          </div>
+          <div class="swatch swatch--soft">
+            <div class="swatch__chip"></div>
+            <span class="swatch__role">Structure</span>
+            <span class="swatch__name">mandarin-slate</span>
+          </div>
+          <div class="swatch swatch--accent">
+            <div class="swatch__chip"></div>
+            <span class="swatch__role">Soul</span>
+            <span class="swatch__name">mandarin-ink</span>
+          </div>
+          <div class="swatch swatch--deep">
+            <div class="swatch__chip"></div>
+            <span class="swatch__role">Depth</span>
+            <span class="swatch__name">mandarin-deep</span>
+          </div>
+        </div>
+        <div class="col-soul-rule">
+          <div class="col-soul-bar"></div>
+          <span class="col-soul-text">Soul · mandarin-ink. Deep navy. ≈ 10:1 on paper. The authority of the collar.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RAAT — foundation inverts here -->
+<div class="collection-raat">
+  <div class="col-section">
+    <div class="col-inner">
+      <div class="col-left">
+        <div class="col-meta">
+          <span class="col-eyebrow">Raat</span>
+          <span class="col-hindi">रात</span>
+        </div>
+        <h2 class="col-display">The hour<br>before.</h2>
+        <p class="col-note">
+          Midnight black, electric violet, warm gold, the bleed.
+          The foundation inverts here. The header above you does not.
+        </p>
+        <p class="col-note col-note--warn" style="margin-top:8px;">
+          Apply .collection-raat on the page body, not on the header or footer.
+          Brand chrome always stays paper and ink.
+        </p>
+        <button class="col-btn">Explore Raat</button>
+      </div>
+      <div class="col-right">
+        <div class="col-palette">
+          <div class="swatch swatch--tint">
+            <div class="swatch__chip" style="border-color: color-mix(in oklab, var(--paper) 15%, transparent);"></div>
+            <span class="swatch__role">Atmosphere</span>
+            <span class="swatch__name">raat-smoke</span>
+          </div>
+          <div class="swatch swatch--soft">
+            <div class="swatch__chip" style="border-color: color-mix(in oklab, var(--paper) 15%, transparent);"></div>
+            <span class="swatch__role">Structure</span>
+            <span class="swatch__name">raat-violet</span>
+          </div>
+          <div class="swatch swatch--accent">
+            <div class="swatch__chip" style="border-color: color-mix(in oklab, var(--paper) 15%, transparent);"></div>
+            <span class="swatch__role">Soul</span>
+            <span class="swatch__name">raat-gold</span>
+          </div>
+          <div class="swatch swatch--deep">
+            <div class="swatch__chip" style="border-color: color-mix(in oklab, var(--paper) 15%, transparent);"></div>
+            <span class="swatch__role">Depth</span>
+            <span class="swatch__name">raat-bleed</span>
+          </div>
+        </div>
+        <div class="col-soul-rule">
+          <div class="col-soul-bar"></div>
+          <span class="col-soul-text">Soul · gold. ≈ 6:1 on midnight. Light in darkness. The only accent that earns a CTA here.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- annotation -->
+<div class="anno">
+  <div class="anno__line"></div>
+  <span class="anno__text">Brand chrome resumes — paper · ink · no collection accent</span>
+  <div class="anno__line"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- THE LOBBY — footer. Paper and ink. No accent.              -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<footer class="site-footer mk-lobby">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="../assets/logo-wordmark.svg" alt="Meyakara">
+      <p class="footer-tag">The Shape of Your Escape.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <div class="footer-col-head">Collections</div>
+        <span>Dhundh</span>
+        <span>Baar</span>
+        <span>Raat</span>
+        <span>Mandarin</span>
+        <span>Lino</span>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-head">House</div>
+        <span>Journal</span>
+        <span>The escape archive</span>
+        <span>Stockists</span>
+        <span>Press</span>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-head">Care</div>
+        <span>Shipping</span>
+        <span>Returns</span>
+        <span>Care guide</span>
+        <span>Contact</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>Est. 2026 · Born in India · Wardrobe of the world.</span>
+    <span>The escape belongs to everyone. The shape belongs to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>

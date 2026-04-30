@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Components · Inputs</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 26px 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-mute); }
+  .input { font-family: var(--font-serif); font-size: 15px; padding: 12px 0; border: 0; border-bottom: 1px solid var(--ink); background: transparent; outline: none; color: var(--ink); }
+  .input::placeholder { color: var(--fg-faint); }
+  .help { font-size: 12px; color: var(--fg-mute); }
+  .check { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+  .box { width: 14px; height: 14px; border: 1px solid var(--ink); display: inline-block; }
+  .box.on { background: var(--ink); }
+</style>
+</head>
+<body>
+  <div class="field"><div class="label">Email</div><input class="input" placeholder="you@somewhere"></div>
+  <div class="field"><div class="label">Search</div><input class="input" value="kaftan"></div>
+  <div class="field"><div class="label">Note</div><input class="input" placeholder="A small message at checkout."><div class="help">Optional. Kept inside the parcel.</div></div>
+  <div class="field"><div class="label">Newsletter</div>
+    <div class="check"><span class="box on"></span> Send me the next escape.</div>
+    <div class="check" style="margin-top:6px"><span class="box"></span> Show me unreleased pieces first.</div>
+  </div>
+</body>
+</html>
