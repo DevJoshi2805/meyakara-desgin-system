@@ -22,10 +22,10 @@ for the brand's storefront.
 | --- | --- |
 | `README.md` | This file — brand context, content & visual fundamentals, iconography. |
 | `SKILL.md` | Skill manifest for Claude / Claude Code. |
-| `colors_and_type.css` | Design tokens — paper & ink foundation, 5 collection palettes, type scale, spacing, motion, semantic element styles. |
+| `colors_and_type.css` | Design tokens — paper & ink foundation, Dhundh palette (active), future collection placeholders, type scale, spacing, motion, semantic element styles. |
 | `assets/` | Logo (wordmark, circle, monogram), favicon, brand ideology PDF. |
 | `preview/` | Cards rendered into the Design System tab — type, colors, spacing, components, brand. |
-| `ui_kits/storefront/` | Hi-fi recreation of the Meyakara storefront — homepage, collection page, product page, journal entry. |
+| `ui_kits/storefront/` | Hi-fi storefront interpretation — homepage, collection page, product page, journal entry, and collection still/teaser pages (e.g. `dhundh-still.html`). |
 
 ---
 
@@ -85,7 +85,7 @@ the one constant across an ever-changing universe of escapes.
 - No exclamation marks. No emoji. No countdown timers. No "Hurry!" or
   "Last chance!". Loudness is what the customer is escaping from.
 - Indian English spelling: **colour**, **honour**, **centre**.
-- **Collection naming is a team decision, not a design-system rule.** The design system's primary language is English. A collection name may be in English, Hindi (Devanagari), or presented alongside both — whichever the team decides for that collection. Current collections: **Dhundh (धुंध) · Baar (बार) · Raat (रात) · Mandarin · Lino**. When a Hindi name appears in a Latin-script context, a transliteration may accompany it for clarity, but there is no prescribed canonical form.
+- **Collection naming is a team decision, not a design-system rule.** The design system's primary language is English. A collection name may be in English, Hindi (Devanagari), or presented alongside both — whichever the team decides for that collection. When a Hindi name appears in a Latin-script context, a transliteration may accompany it for clarity, but there is no prescribed canonical form.
 
 ### Pronouns — *you*, almost never *we*
 
@@ -117,7 +117,7 @@ Example, *Dhundh* (Hills, summer):
 
 > *Dhundh.*
 > Everyone has a hill. This is yours.
-> Light cotton cut for the city, dyed in the colours of a 6am ridge line.
+> Natural cotton cut loose enough to move before you do. Made to be worn before the world wakes.
 > ENTER THE COLLECTION
 
 ---
@@ -138,16 +138,13 @@ What stays constant is the **foundation**:
 - **Ink** — a soft, not-quite-black (`#1A1814`) for type, marks, and
   hairline rules. Never `#000`.
 
-Five collection palettes are defined as CSS variables in
-`colors_and_type.css`:
+One collection palette is active. Others are stubbed in `colors_and_type.css`
+and will be fully defined at launch.
 
-| Codename | World | Palette |
-| --- | --- | --- |
-| **Dhundh** (धुंध) | The Hills | fog white · cool blue-grey · muted pine · stone · deep |
-| **Baar** (बार) | The Beach | bleached linen · sun-faded coral · salt grey · driftwood · tide |
-| **Raat** (रात) | Nightlife | midnight · electric violet · neon-bleed gold · rose bleed · smoke |
-| **Mandarin** | The Collar | ink blue · aged ivory · slate · worn silk · deep |
-| **Lino** | Italian Linen | sun cream · warm stone · dusty terracotta · faded olive · sun |
+| Codename | World | Status | Palette summary |
+| --- | --- | --- | --- |
+| **Dhundh** (धुंध) | The Hills | **Active** | Two modes — before-dawn (night · stone · mist) and dawn (pine · fog). Three-phase narrative: city night → stone in-between → mountain clarity. |
+| Baar · Raat · Mandarin · Lino | — | Not yet opened | Palette vars stubbed in CSS. Detail to be written at launch. |
 
 Hard rules:
 
@@ -181,12 +178,23 @@ custom properties (`--t-display` … `--t-eyebrow`) for the full set.
 
 ### Backgrounds
 
-- **Paper, full-bleed.** No gradients. No noise textures. No mesh
-  backgrounds. The page *is* paper.
+- **Paper, full-bleed by default.** No decorative gradients. No noise textures.
+  No mesh backgrounds. The page *is* paper — unless the collection overrides this.
+- **Dark collection modes** replace `--bg` with a near-black foundation.
+  Dhundh before-dawn does this — the city night world is total, header to
+  footer. This is intentional, not an exception.
+- **Atmospheric depth overlays** are allowed on dark full-bleed hero sections
+  only: a radial overlay using two tones of the same palette colour family
+  (e.g. `--dhundh-deep` into `--dhundh-night`), simulating the depth falloff
+  that editorial photography provides naturally. This is not a decorative
+  gradient — it must be dark-on-dark and imperceptible at a glance. One per
+  hero, never on light sections.
 - **Editorial photography**, full-bleed, with generous negative space. Warm
   natural light. No neon. No HDR. Imagery should feel like it was shot on
   film and left in a drawer for a week.
-- **Hairline rules** (1px ink) used sparingly to divide sections.
+- **Hairline rules** (1px `var(--rule)`) used sparingly to divide sections.
+  On dark surfaces, `--rule` and `--rule-soft` automatically adapt via the
+  semantic fg/bg vars.
 - **Imagery vibe** — warm, slightly desaturated, occasional film grain.
   Never blown-out. Never glossy. Skin tones true; whites a little ivory.
 
@@ -198,7 +206,9 @@ custom properties (`--t-display` … `--t-eyebrow`) for the full set.
 - Section spacing is **large** (`--s-9`, 96px) and *unequal* — the brand
   rarely uses perfectly symmetric vertical rhythm.
 - Fixed header is a **thin hairline bar** (max ~64px), bottom-bordered with
-  `1px solid var(--ink)`. No drop shadow.
+  `1px solid var(--rule)`. No drop shadow. On collection pages the header
+  inherits the collection's surface — `var(--rule)` and `var(--fg)` adapt
+  automatically. The collection owns the header.
 
 ### Borders, radii, shadows
 
@@ -321,16 +331,27 @@ is the placeholder set.
 2. Use semantic CSS variables from the `:root` block. Don't hard-code
    `#1A1814` — use `var(--ink)`. Don't hard-code `#F1ECE0` — use
    `var(--paper)`.
-3. To activate a collection, redeclare the four `--accent-*` vars on a
-   wrapper element. Example:
+3. To activate a collection, apply the collection class on the page `<body>`
+   or outermost wrapper. Dhundh has two surface modes — apply both:
 
-   ```css
-   .collection-dhundh {
-     --accent:      var(--dhundh-pine);
-     --accent-soft: var(--dhundh-blue-grey);
-     --accent-deep: var(--dhundh-deep);
-     --accent-tint: var(--dhundh-fog);
-   }
+   ```html
+   <!-- Collection page — the collection owns everything, header to footer -->
+   <body class="collection-dhundh">
+
+     <!-- Phase 01 — City night: foundation inverts, dark world -->
+     <section class="collection-dhundh--before-dawn">
+       <header>…</header>
+       <!-- hero, mist accents, ghost display type -->
+     </section>
+
+     <!-- Phase 02 — Stone in-between: apply bg directly on the section -->
+     <section style="background: var(--dhundh-stone)">…</section>
+
+     <!-- Phase 03 — Mountain clarity: pine on paper, fog sparingly -->
+     <section>…</section>
+
+     <footer>…</footer>
+   </body>
    ```
 
 4. Compose copy by the patterns in §2. If the line sounds like a

@@ -1,7 +1,9 @@
 // Footer.jsx — minimal hairline footer.
-function Footer() {
+// On collection pages: no mk-lobby — footer inherits the collection's world.
+// On home/utility pages: pass lobby={true} to apply paper/ink treatment.
+function Footer({ lobby = false }) {
   return (
-    <footer className="mk-footer mk-lobby">
+    <footer className={`mk-footer${lobby ? ' mk-lobby' : ''}`}>
       <div className="mk-footer__top">
         <div>
           <img src="../../assets/logo-wordmark.svg" alt="Meyakara" className="mk-footer__logo"/>

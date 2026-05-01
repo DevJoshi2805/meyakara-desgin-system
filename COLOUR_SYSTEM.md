@@ -47,112 +47,142 @@ Activate a collection by applying its class on the outermost wrapper of the coll
 ---
 
 ### Dhundh — The Hills
-*6am ridge line. Still air. Pine and fog.*
+*Before dawn and after. The same escape, two moments.*
+
+Dhundh is the only collection with two surface modes. The story is a complete journey in three phases: you leave the city at night, you pass through the in-between, and the mountain clarity finds you. The same seven palette colours serve all three phases — the CSS re-assigns their roles depending on which moment the section lives in.
+
+---
+
+#### Phase 01 — City night · `.collection-dhundh--before-dawn`
+*You leave before the world wakes. The city is still loud behind you.*
 
 | Role | Variable | Hex | Rationale |
 |---|---|---|---|
-| Soul | `--dhundh-pine` | `#4F5C53` | Dark pine. Specific to a hill morning — no other collection could use it. |
-| Structure | `--dhundh-blue-grey` | `#8FA0A8` | Cool morning light on rock. |
-| Depth | `--dhundh-deep` | `#2D332E` | Earth before dawn. |
-| Atmosphere | `--dhundh-fog` | `#E8E9E6` | The mist. Sits close to paper — intentionally quiet. |
+| Background | `--dhundh-night` | `#090C0A` | City darkness. Must stay deep — if it lightens, the whole narrative collapses. |
+| Soul | `--dhundh-mist` | `#9EAAA4` | The only luminous thing in the dark. CTAs and key moments only. |
+| Structure | `--dhundh-pine` | `#4F5C53` | Pine silhouette. Dark-on-dark texture, felt not read. |
+| Depth | `--dhundh-deep` | `#2D332E` | Absolute dark. |
 
-**CSS class:** `.collection-dhundh`
+`--dhundh-night` dominates the top of every Dhundh page. This phase should be generous — let the darkness breathe.
+
+> **Ghost text:** On the hero, display type ("D H U N D H" with wide tracking) can be near-invisible via `.text-ghost`. Reserve this for the full collection page. On a still/teaser page, the title should be clearly legible — the display is the announcement.
+
+**Foundation inverts:** `--bg` → `--dhundh-night`, `--fg` → `var(--paper)`. Header and footer on the Dhundh collection page inherit this world. Do not apply `.mk-lobby` to them.
+
+---
+
+#### Phase 02 — The in-between · `--dhundh-stone` as section background
+*Neither city nor mountain. The road. The fog. The commitment to leave.*
+
+| Role | Variable | Hex | Rationale |
+|---|---|---|---|
+| Section bg | `--dhundh-stone` | `#6E6A60` | Warm-cool grey. The material of the transition — road, rock, mist. Used as explicit section `background` on transition zones. |
+| Text | `var(--paper)` | `#F1ECE0` | Light text on stone — use `var(--fg)` if inside a before-dawn wrapper. |
+
+Stone is not mapped to `--accent`. It is applied directly as a section background — the one surface that belongs to neither the city night nor the mountain clarity.
+
+> **Do not overuse stone.** One transition section per page, at most two. It is a bridge, not a destination.
+
+---
+
+#### Phase 03 — Mountain clarity · `.collection-dhundh`
+*The fog lifts. Pine on paper. You found it.*
+
+| Role | Variable | Hex | Rationale |
+|---|---|---|---|
+| Soul | `--dhundh-pine` | `#4F5C53` | Dark pine on paper. The defining mark when clarity returns. |
+| Structure | `--dhundh-blue-grey` | `#8FA0A8` | Cool morning light. Borders, card dividers. |
+| Depth | `--dhundh-deep` | `#2D332E` | Deepest tone. |
+| Atmosphere | `--dhundh-fog` | `#D8DDD9` | **Earned clarity — use sparingly.** Final sections, product reveals, the payoff moment only. If everything is fog-tinted, the earned quality is lost. |
+
+Paper foundation. The wordmark and nav adapt to `var(--fg)` / `var(--bg)` automatically.
+
+---
+
+#### Narrative arc on a Dhundh page
+
+```
+[header — inherits city night world, no mk-lobby]
+[city night hero — --dhundh-night dominant, --dhundh-mist for accents]
+  ↓  scroll
+[stone transition — --dhundh-stone as section bg, the in-between]
+  ↓  scroll
+[mountain clarity — --dhundh-fog used sparingly, pine on paper]
+[footer — collection-owned]
+```
+
+**CSS class (mountain clarity / dawn):** `.collection-dhundh`
+**CSS class (city night / before-dawn):** `.collection-dhundh--before-dawn`
+**Stone transition:** apply `background: var(--dhundh-stone)` directly on the section element
 
 ---
 
 ### Baar — The Beach
-*Bleached linen. Colours left in the sun.*
+*Not yet opened. Palette and narrative to be defined before launch.*
 
-| Role | Variable | Hex | Rationale |
-|---|---|---|---|
-| Soul | `--baar-coral` | `#D98A78` | Sun-faded coral. Immediate, irreplaceable. **Decorative use only — contrast ≈ 2.8:1 on paper.** |
-| Structure | `--baar-driftwood` | `#8B6F55` | Warm worn wood. |
-| Depth | `--baar-tide` | `#4F5E5C` | Dark tidal water. Use for small interactive text on Baar pages. |
-| Atmosphere | `--baar-bleached` | `#F3EBDA` | Sun-bleached surface. |
-
-**CSS class:** `.collection-baar`
-
-> **Contrast note:** `--baar-coral` fails WCAG AA for body-size text on `--paper`. Use it for large display type, border accents, and decorative marks. Reach for `--baar-tide` (via `--accent-deep`) when small text must carry colour.
+**CSS class:** `.collection-baar` · Raw vars live in the activation block in `colors_and_type.css`.
 
 ---
 
-### Raat — Nightlife *(foundation inverts)*
-*The hour before. Electricity. Darkness with light bleeding through.*
+### Raat — Nightlife
+*Not yet opened. Palette and narrative to be defined before launch.*
 
-| Role | Variable | Hex | Rationale |
-|---|---|---|---|
-| Soul | `--raat-gold` | `#C9A24A` | Warm light in darkness. ≈ 6:1 contrast on midnight — the only accent that works as a CTA here. |
-| Structure | `--raat-violet` | `#5B3AC7` | Electric. Decorative only (≈ 3.8:1 on midnight). |
-| Depth | `--raat-bleed` | `#8E2A6A` | The bleed — the colour between violet and warmth. |
-| Atmosphere | `--raat-smoke` | `#1F1B2A` | The room. Dark surface. |
-| — `--bg` override | `--raat-midnight` | `#0A0A12` | Applied via `.collection-raat`. |
-| — `--fg` override | `var(--paper)` | `#F1ECE0` | Foundation light, flipped to foreground. |
-
-**CSS class:** `.collection-raat`
-
-> **Foundation exception:** Raat is the only collection that overrides `--bg` and `--fg`. Apply `.collection-raat` on the outermost collection wrapper only. The `<header>` and `<footer>` must sit outside this wrapper — they must always remain paper and ink.
->
-> **Why gold, not violet?** Gold (#C9A24A) on midnight has ≈ 6:1 contrast — usable for CTAs. Violet (≈ 3.8:1) is decorative. Gold is also the image of light in darkness: a held glass, a stage lamp. It earns the soul role.
+**CSS class:** `.collection-raat` · Foundation inverts (like Dhundh before-dawn). Raw vars live in the activation block in `colors_and_type.css`.
 
 ---
 
 ### Mandarin — The Collar
-*Ink blue. Aged ivory. The colours of restraint.*
+*Not yet opened. Palette and narrative to be defined before launch.*
 
-| Role | Variable | Hex | Rationale |
-|---|---|---|---|
-| Soul | `--mandarin-ink` | `#1B2A4A` | Deep navy. ≈ 10:1 contrast on paper. The authority of the collar. |
-| Structure | `--mandarin-slate` | `#5B6772` | Cool disciplined grey-blue. |
-| Depth | `--mandarin-deep` | `#11182B` | Absolute navy. |
-| Atmosphere | `--mandarin-silk` | `#C7B89A` | Aged cloth. Warm ivory surface wash. |
-
-**CSS class:** `.collection-mandarin`
+**CSS class:** `.collection-mandarin` · Raw vars live in the activation block in `colors_and_type.css`.
 
 ---
 
-### Lino — Italian Linen *(system default)*
-*Sun cream. Terracotta. A slow Sunday.*
+### Lino — Italian Linen
+*Not yet opened. Year-round default when no collection is active.*
 
-| Role | Variable | Hex | Rationale |
-|---|---|---|---|
-| Soul | `--lino-terracotta` | `#B26B4A` | Earthy, specific. The only colour that says slow Sunday and nothing else. |
-| Structure | `--lino-stone` | `#C9B89A` | Warm gravel. |
-| Depth | `--lino-olive` | `#7E7A4A` | Cool counterpoint to terracotta. |
-| Atmosphere | `--lino-sun` | `#E2C77F` | Afternoon light. Use as section background wash. |
-
-**CSS class:** `.collection-lino` (also the `:root` default — no class needed)
-
-> Lino is the year-round default because it is the most accessible, warmest, and temporally neutral palette. It is not the first collection — it is the brand's resting state.
+**CSS class:** `.collection-lino` · Raw vars live in the activation block in `colors_and_type.css`.
 
 ---
 
 ## The lobby
 
-The lobby is every surface that belongs to the **brand**, not to any collection.
+The lobby is every surface that belongs to the **brand** and to **no collection** — pages a customer lands on before entering any collection's world.
 
-**Lobby surfaces:** the site header, site footer, navigation drawers, account pages, checkout, error states, loading states, 404 pages.
+**Lobby surfaces:** the home page, account pages, cart, checkout, order confirmation, error states, loading states, 404 pages.
+
+**Not lobby surfaces:** the header and footer on a collection page. When a customer is inside Dhundh, the entire page — header, hero, product sections, footer — breathes Dhundh. The brand anchor is the wordmark and typeface, not the background colour. The wordmark in `var(--paper)` on a dark before-dawn background is still unmistakably Meyakara.
 
 **The rule:** lobby surfaces use only `--paper` and `--ink`. No `--accent` vars. No collection tints. Ever.
 
-Apply `.mk-lobby` to enforce this. It resets all accent pointers to foundation values, regardless of any collection class above it in the DOM.
+Apply `.mk-lobby` on home and utility pages to enforce this.
 
 ```css
-/* in your markup — header and footer always sit outside any collection wrapper */
+/* Home page — full lobby, no collection */
+<body class="mk-lobby">
+  <header> … </header>
+  <main> … </main>
+  <footer> … </footer>
+</body>
 
-<header class="mk-lobby"> … </header>
-
-<main class="collection-raat">
-  <!-- dark midnight world -->
-</main>
-
-<footer class="mk-lobby"> … </footer>
+/* Collection page — collection owns everything, header and footer included */
+<body class="collection-dhundh">
+  <section class="collection-dhundh--before-dawn">
+    <header> … </header>    <!-- inherits the dark world -->
+    <!-- before-dawn hero, opening sections -->
+  </section>
+  <section>
+    <!-- dawn sections — inherits .collection-dhundh from body -->
+  </section>
+  <footer> … </footer>      <!-- inherits the dawn world -->
+</body>
 ```
 
-**Why the lobby matters — especially for India-first launch:**
+**Why the lobby still matters:**
 
-Instagram is the primary discovery channel. Scroll speed is high. A customer who encounters Dhundh (cool, pine, fog) one week and Raat (dark, gold, violet) the next will not connect them as the same brand without a consistent visual anchor. The paper/ink lobby — appearing in every frame of brand chrome, on every collection page — is that anchor.
+The home page is the one surface every customer lands on before choosing a collection. It is the brand's resting state — paper and ink, no collection colour. The wordmark, the typeface, the quiet layout. Collections are introduced here as doors, not imposed as worlds. Once the customer steps through a door (navigates to a collection page), that world becomes total.
 
-The lobby is not a design constraint. It is the reason the collection freedom is possible.
+The lobby is not a constraint on collection pages. It is the threshold between them.
 
 ---
 

@@ -74,40 +74,20 @@
   /* Activate by setting one as the active accent set.   */
   /* -------------------------------------------------- */
 
-  /* Dhundh — The Hills (6am ridge line)                       */
-  --dhundh-fog:        #E8E9E6;
-  --dhundh-blue-grey:  #8FA0A8;
-  --dhundh-pine:       #4F5C53;
-  --dhundh-stone:      #6E6A60;
-  --dhundh-deep:       #2D332E;
+  /* ── Dhundh — The Hills (ACTIVE) ──────────────────────────── */
+  /* city darkness → stone in-between → mountain clarity         */
+  /* These vars are used directly in markup — stay in :root.     */
+  --dhundh-night:      #090C0A;   /* city night — dominant at top, must stay deep     */
+  --dhundh-stone:      #6E6A60;   /* the in-between — section bg for transition zones  */
+  --dhundh-mist:       #9EAAA4;   /* luminous fog — soul in dark, mountain soul accent */
+  --dhundh-blue-grey:  #8FA0A8;   /* mountain structure — cool light on rock           */
+  --dhundh-pine:       #4F5C53;   /* mountain soul — dark pine when clarity returns     */
+  --dhundh-deep:       #2D332E;   /* depth across all three phases                     */
+  --dhundh-fog:        #D8DDD9;   /* earned clarity — sparingly, final reveals only    */
 
-  /* Baar — The Beach (colours left in the sun)                */
-  --baar-bleached:     #F3EBDA;
-  --baar-coral:        #D98A78;
-  --baar-salt:         #B8B5A8;
-  --baar-driftwood:    #8B6F55;
-  --baar-tide:         #4F5E5C;
-
-  /* Raat — Nightlife (the hour before)                        */
-  --raat-midnight:     #0A0A12;
-  --raat-violet:       #5B3AC7;
-  --raat-gold:         #C9A24A;
-  --raat-bleed:        #8E2A6A;
-  --raat-smoke:        #1F1B2A;
-
-  /* Mandarin — The Collar (colours of restraint)              */
-  --mandarin-ink:      #1B2A4A;
-  --mandarin-ivory:    #E9E1CC;
-  --mandarin-slate:    #5B6772;
-  --mandarin-silk:     #C7B89A;
-  --mandarin-deep:     #11182B;
-
-  /* Lino — Italian Linen (a slow Sunday)                      */
-  --lino-cream:        #F0E6D0;
-  --lino-stone:        #C9B89A;
-  --lino-terracotta:   #B26B4A;
-  --lino-olive:        #7E7A4A;
-  --lino-sun:          #E2C77F;
+  /* ── Future collections ─────────────────────────────────────── */
+  /* Baar, Raat, Mandarin, Lino palette vars live inside their    */
+  /* .collection-* activation blocks below — not here.            */
 
   /* -------------------------------------------------- */
   /* ACTIVE ACCENTS — point these at any collection.     */
@@ -210,71 +190,139 @@
 
 /* ============================================================
    COLLECTION ACTIVATIONS
-   Apply on the outermost wrapper of a collection page/section.
-   Header, footer, and all brand chrome must sit outside.
+   Each block is self-contained — raw palette vars live here,
+   not in :root. Apply the class on the outermost page wrapper.
+   Collection pages are fully immersive: header and footer
+   inherit the collection world. Never apply .mk-lobby to them.
    ============================================================ */
 
-/* Lino — Italian Linen (a slow Sunday) */
+/* ─── DHUNDH — The Hills ──────────────────────────────────────
+   Three-phase narrative: city night → stone in-between → clarity.
+   Raw vars are declared in :root (used directly in markup).
+   Two activation classes handle the two surface modes.
+   ──────────────────────────────────────────────────────────── */
+
+/* Phase 03 — Mountain clarity (paper foundation, light returns) */
+.collection-dhundh {
+  --accent:       var(--dhundh-pine);       /* soul: dark pine on paper             */
+  --accent-soft:  var(--dhundh-blue-grey);  /* structure: cool morning on rock      */
+  --accent-deep:  var(--dhundh-deep);       /* depth                                */
+  --accent-tint:  var(--dhundh-fog);        /* atmosphere: earned clarity — sparingly */
+}
+
+/* Phase 01 — City night (foundation inverts, fog is the only light) */
+/* Apply on hero and opening sections. Header/footer inherit this world. */
+.collection-dhundh--before-dawn {
+  --bg:        var(--dhundh-night);
+  --bg-raised: color-mix(in oklab, var(--dhundh-night) 65%, var(--dhundh-pine));
+  --fg:        var(--paper);
+  --fg-soft:   color-mix(in oklab, var(--paper) 72%, transparent);
+  --fg-mute:   color-mix(in oklab, var(--paper) 42%, transparent);
+  --fg-faint:  color-mix(in oklab, var(--paper) 22%, transparent);
+  --rule:      color-mix(in oklab, var(--paper) 12%, transparent);
+  --rule-soft: color-mix(in oklab, var(--paper) 7%, transparent);
+
+  --accent:       var(--dhundh-mist);    /* soul: luminous fog in darkness         */
+  --accent-soft:  var(--dhundh-pine);    /* structure: pine silhouette             */
+  --accent-deep:  var(--dhundh-deep);    /* depth: absolute dark                   */
+  --accent-tint:  var(--dhundh-night);   /* atmosphere: dark surface wash          */
+
+  background: var(--bg);
+  color:      var(--fg);
+}
+
+/* Phase 02 — Stone in-between: apply background: var(--dhundh-stone) directly
+   on the transition section element. Not a class — it is a surface, not a mode. */
+
+
+/* ─── LINO — Italian Linen ────────────────────────────────────
+   A slow Sunday. Year-round default when no collection is active.
+   ──────────────────────────────────────────────────────────── */
 .collection-lino {
+  --lino-cream:        #F0E6D0;
+  --lino-stone:        #C9B89A;
+  --lino-terracotta:   #B26B4A;
+  --lino-olive:        #7E7A4A;
+  --lino-sun:          #E2C77F;
+
   --accent:       var(--lino-terracotta); /* soul        */
   --accent-soft:  var(--lino-stone);      /* structure   */
   --accent-deep:  var(--lino-olive);      /* depth       */
   --accent-tint:  var(--lino-sun);        /* atmosphere  */
 }
 
-/* Dhundh — The Hills (6am ridge line) */
-.collection-dhundh {
-  --accent:       var(--dhundh-pine);       /* soul        */
-  --accent-soft:  var(--dhundh-blue-grey);  /* structure   */
-  --accent-deep:  var(--dhundh-deep);       /* depth       */
-  --accent-tint:  var(--dhundh-fog);        /* atmosphere  */
-}
 
-/* Baar — The Beach (colours left in the sun) */
-/* Note: --accent (coral) is decorative only on --paper.    */
-/* Contrast ≈ 2.8:1. Use --accent-deep for small text.      */
+/* ─── BAAR — The Beach ────────────────────────────────────────
+   Colours left in the sun. Palette to be finalised at launch.
+   Coral (soul) is decorative only — contrast ≈ 2.8:1 on paper.
+   Use --accent-deep (tide) for small interactive text.
+   ──────────────────────────────────────────────────────────── */
 .collection-baar {
-  --accent:       var(--baar-coral);        /* soul        */
-  --accent-soft:  var(--baar-driftwood);    /* structure   */
-  --accent-deep:  var(--baar-tide);         /* depth       */
-  --accent-tint:  var(--baar-bleached);     /* atmosphere  */
+  --baar-bleached:     #F3EBDA;
+  --baar-coral:        #D98A78;
+  --baar-salt:         #B8B5A8;
+  --baar-driftwood:    #8B6F55;
+  --baar-tide:         #4F5E5C;
+
+  --accent:       var(--baar-coral);      /* soul — decorative only, large type     */
+  --accent-soft:  var(--baar-driftwood);  /* structure                              */
+  --accent-deep:  var(--baar-tide);       /* depth — use for small text CTAs        */
+  --accent-tint:  var(--baar-bleached);   /* atmosphere                             */
 }
 
-/* Mandarin — The Collar (colours of restraint) */
-.collection-mandarin {
-  --accent:       var(--mandarin-ink);      /* soul        */
-  --accent-soft:  var(--mandarin-slate);    /* structure   */
-  --accent-deep:  var(--mandarin-deep);     /* depth       */
-  --accent-tint:  var(--mandarin-silk);     /* atmosphere  */
-}
 
-/* Raat — Nightlife (the hour before) */
-/* The only collection that overrides the foundation.       */
-/* Apply on the outermost collection wrapper only.          */
-/* Header and footer MUST remain outside this wrapper.      */
+/* ─── RAAT — Nightlife ────────────────────────────────────────
+   The hour before. Foundation inverts (like Dhundh before-dawn).
+   Palette to be finalised at launch.
+   ──────────────────────────────────────────────────────────── */
 .collection-raat {
+  --raat-midnight:     #0A0A12;
+  --raat-violet:       #5B3AC7;
+  --raat-gold:         #C9A24A;
+  --raat-bleed:        #8E2A6A;
+  --raat-smoke:        #1F1B2A;
+
   --bg:           var(--raat-midnight);
   --bg-raised:    var(--raat-smoke);
   --fg:           var(--paper);
-  --fg-soft:      var(--mandarin-silk);
+  --fg-soft:      color-mix(in oklab, var(--paper) 72%, transparent);
   --fg-mute:      color-mix(in oklab, var(--paper) 52%, transparent);
   --fg-faint:     color-mix(in oklab, var(--paper) 28%, transparent);
   --rule:         color-mix(in oklab, var(--paper) 18%, transparent);
   --rule-soft:    color-mix(in oklab, var(--paper) 10%, transparent);
 
-  --accent:       var(--raat-gold);         /* soul        */
-  --accent-soft:  var(--raat-violet);       /* structure   */
-  --accent-deep:  var(--raat-bleed);        /* depth       */
-  --accent-tint:  var(--raat-smoke);        /* atmosphere  */
+  --accent:       var(--raat-gold);       /* soul — ≈6:1 on midnight, only usable CTA */
+  --accent-soft:  var(--raat-violet);     /* structure — decorative, ≈3.8:1           */
+  --accent-deep:  var(--raat-bleed);      /* depth                                    */
+  --accent-tint:  var(--raat-smoke);      /* atmosphere                               */
 
-  background:     var(--bg);
-  color:          var(--fg);
+  background: var(--bg);
+  color:      var(--fg);
+}
+
+
+/* ─── MANDARIN — The Collar ───────────────────────────────────
+   Ink blue. Aged ivory. Colours of restraint.
+   Palette to be finalised at launch.
+   ──────────────────────────────────────────────────────────── */
+.collection-mandarin {
+  --mandarin-ink:      #1B2A4A;
+  --mandarin-ivory:    #E9E1CC;
+  --mandarin-slate:    #5B6772;
+  --mandarin-silk:     #C7B89A;
+  --mandarin-deep:     #11182B;
+
+  --accent:       var(--mandarin-ink);    /* soul        */
+  --accent-soft:  var(--mandarin-slate);  /* structure   */
+  --accent-deep:  var(--mandarin-deep);   /* depth       */
+  --accent-tint:  var(--mandarin-silk);   /* atmosphere  */
 }
 
 /* ============================================================
-   THE LOBBY — brand chrome. Never inherits collection accent.
-   Apply on: <header>, <footer>, nav drawers, account pages,
-   checkout, error and loading states.
+   THE LOBBY — home, account, cart, checkout, 404, error states.
+   Collection page headers and footers are NOT lobby — they
+   inherit the collection's world entirely. Apply mk-lobby only
+   on pages that belong to no collection.
    ============================================================ */
 .mk-lobby {
   --accent:       var(--ink);
@@ -283,6 +331,12 @@
   --accent-tint:  var(--paper-warm);
   background:     var(--paper);
   color:          var(--ink);
+}
+
+/* Ghost text — deliberately low contrast. For display type in before-dawn  */
+/* sections where near-invisibility is the point, not an error.              */
+.text-ghost {
+  color: color-mix(in oklab, var(--fg) 18%, transparent);
 }
 
 /* ============================================================
@@ -301,7 +355,7 @@ html, body {
   text-rendering: optimizeLegibility;
 }
 
-::selection { background: var(--ink); color: var(--paper); }
+::selection { background: var(--fg); color: var(--bg); }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
@@ -375,7 +429,7 @@ code, pre, kbd, samp {
   font-size: 0.92em;
 }
 
-/* Quiet button — borrowed from product UI. */
+/* Collection-aware button — uses --fg/--bg so it adapts to any surface. */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -384,20 +438,20 @@ code, pre, kbd, samp {
   font-size: var(--t-caption);
   letter-spacing: var(--tk-label);
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--fg);
   background: transparent;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--fg);
   border-radius: 0;
   padding: 14px 22px;
   cursor: pointer;
   transition: background var(--dur-2) var(--ease-quiet),
               color      var(--dur-2) var(--ease-quiet);
 }
-.btn:hover { background: var(--ink); color: var(--paper); }
+.btn:hover { background: var(--fg); color: var(--bg); }
 .btn:active { transform: translateY(0.5px); }
 
 .btn--solid {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--fg);
+  color: var(--bg);
 }
-.btn--solid:hover { background: transparent; color: var(--ink); }
+.btn--solid:hover { background: transparent; color: var(--fg); }

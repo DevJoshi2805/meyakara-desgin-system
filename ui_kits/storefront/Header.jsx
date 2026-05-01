@@ -1,7 +1,9 @@
 // Header.jsx — fixed top nav with hairline rule.
-function Header({ onOpenBag, bagCount = 0 }) {
+// On collection pages: no mk-lobby — header inherits the collection's world.
+// On home/utility pages: pass lobby={true} to apply paper/ink treatment.
+function Header({ onOpenBag, bagCount = 0, lobby = false }) {
   return (
-    <header className="mk-header mk-lobby">
+    <header className={`mk-header${lobby ? ' mk-lobby' : ''}`}>
       <div className="mk-nav">
         <div className="mk-nav__left">
           <span>Collections</span>

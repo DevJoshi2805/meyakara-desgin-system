@@ -123,19 +123,7 @@ body {
   border-top: 1px solid var(--rule-soft);
 }
 
-/* ── Default state ── */
-.default-block {
-  background: var(--paper-warm);
-  border: 1px solid var(--rule-soft);
-  padding: var(--s-6);
-}
-.default-block p {
-  font-size: var(--t-body-sm);
-  color: var(--ink-soft);
-  line-height: var(--lh-prose);
-  max-width: 64ch;
-  margin-bottom: var(--s-4);
-}
+/* ── Code block ── */
 .code-block {
   font-family: var(--font-mono);
   font-size: var(--t-caption);
@@ -144,133 +132,117 @@ body {
   background: var(--paper-deep);
   padding: var(--s-5);
   border: 1px solid var(--rule-soft);
-  margin-top: var(--s-4);
 }
 
-/* ── Collection matrix ── */
-.matrix {
+/* ── Dhundh dual-mode table ── */
+.mode-grid {
   display: grid;
-  grid-template-columns: 80px repeat(5, 1fr);
-  gap: 0;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--rule-soft);
   border: 1px solid var(--rule-soft);
+  margin-bottom: var(--s-6);
 }
-.matrix-cell {
-  padding: var(--s-3) var(--s-4);
-  border-right: 1px solid var(--rule-soft);
-  border-bottom: 1px solid var(--rule-soft);
-}
-.matrix-cell:last-child { border-right: none; }
-.matrix-row:last-child .matrix-cell { border-bottom: none; }
-
-/* Header row */
-.matrix-head {
-  font-size: 9px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-  background: var(--paper-warm);
-  padding: var(--s-3) var(--s-4);
-  border-right: 1px solid var(--rule-soft);
-  border-bottom: 1px solid var(--rule-soft);
-  font-family: var(--font-serif);
-  font-weight: 400;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-.matrix-head-hi {
-  font-family: var(--font-devanagari);
-  font-size: 12px;
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--ink-faint);
-}
-
-/* Role label column */
-.matrix-role {
-  font-size: 9px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  background: var(--paper-warm);
-  padding: var(--s-3) var(--s-4);
-  display: flex;
-  align-items: center;
-  border-right: 1px solid var(--rule-soft);
-  border-bottom: 1px solid var(--rule-soft);
-}
-
-/* Swatch cell */
-.matrix-swatch {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-2);
-}
-.matrix-chip { height: 40px; width: 100%; }
-.matrix-var {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  color: var(--ink-faint);
-  line-height: 1.4;
-}
-.matrix-hex {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  color: var(--ink-faint);
-}
-
-/* soul row highlight */
-.matrix-soul .matrix-chip {
-  outline: 2px solid var(--ink);
-  outline-offset: -2px;
-}
-
-/* ── Lobby rule ── */
-.lobby-rule {
-  border: 1px solid var(--ink);
+.mode-panel {
   padding: var(--s-6);
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: var(--s-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
 }
-.lobby-rule-label {
+.mode-panel--dawn    { background: var(--paper); }
+.mode-panel--before  { background: var(--dhundh-night); }
+
+.mode-label {
   font-size: var(--t-eyebrow);
   letter-spacing: var(--tk-eyebrow);
   text-transform: uppercase;
-  color: var(--ink-mute);
-  margin-bottom: var(--s-3);
+  margin-bottom: var(--s-2);
 }
-.lobby-rule-title {
-  font-size: var(--t-h3);
-  font-weight: 400;
-  margin-bottom: var(--s-3);
+.mode-panel--dawn   .mode-label { color: var(--ink-faint); }
+.mode-panel--before .mode-label { color: color-mix(in oklab, var(--paper) 30%, transparent); }
+
+.mode-class {
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  margin-bottom: var(--s-4);
 }
-.lobby-rule-desc {
-  font-size: var(--t-body-sm);
-  color: var(--ink-soft);
-  line-height: var(--lh-prose);
-  max-width: 44ch;
-}
-.lobby-surfaces {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-3);
-}
-.lobby-surface-row {
+.mode-panel--dawn   .mode-class { color: var(--dhundh-pine); }
+.mode-panel--before .mode-class { color: var(--dhundh-mist); }
+
+.role-row {
   display: flex;
   align-items: center;
   gap: var(--s-4);
-  font-size: var(--t-body-sm);
 }
-.lobby-surface-chip {
-  width: 48px;
-  height: 28px;
-  background: var(--paper);
-  border: 1px solid var(--ink);
+.role-chip {
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
 }
-.lobby-surface-name { color: var(--ink); }
-.lobby-surface-note { color: var(--ink-mute); font-size: var(--t-caption); font-style: italic; }
+.role-chip--soul {
+  outline: 2px solid currentColor;
+  outline-offset: -3px;
+}
+.role-info { display: flex; flex-direction: column; gap: 2px; }
+.role-name {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.mode-panel--dawn   .role-name { color: var(--ink-faint); }
+.mode-panel--before .role-name { color: color-mix(in oklab, var(--paper) 28%, transparent); }
+
+.role-var {
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+}
+.mode-panel--dawn   .role-var { color: var(--ink-mute); }
+.mode-panel--before .role-var { color: color-mix(in oklab, var(--paper) 45%, transparent); }
+
+.role-hex {
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+.mode-panel--dawn   .role-hex { color: var(--ink-faint); }
+.mode-panel--before .role-hex { color: color-mix(in oklab, var(--paper) 22%, transparent); }
+
+/* ── Stone surface ── */
+.stone-panel {
+  background: var(--dhundh-stone);
+  padding: var(--s-6);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-6);
+  border: 1px solid var(--rule-soft);
+  margin-bottom: var(--s-6);
+}
+.stone-label {
+  font-size: var(--t-eyebrow);
+  letter-spacing: var(--tk-eyebrow);
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--paper) 38%, transparent);
+  margin-bottom: var(--s-3);
+}
+.stone-title {
+  font-size: var(--t-h3);
+  font-weight: 400;
+  color: var(--paper);
+  margin-bottom: var(--s-3);
+  line-height: var(--lh-snug);
+}
+.stone-desc {
+  font-size: var(--t-body-sm);
+  color: color-mix(in oklab, var(--paper) 55%, transparent);
+  line-height: var(--lh-prose);
+  font-style: italic;
+  max-width: 36ch;
+}
+.stone-chip-row { display: flex; flex-direction: column; gap: var(--s-3); justify-content: flex-end; }
+.stone-chip-item { display: flex; align-items: center; gap: var(--s-4); }
+.stone-chip { width: 40px; height: 40px; flex-shrink: 0; }
+.stone-chip-info { display: flex; flex-direction: column; gap: 2px; }
+.stone-chip-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: color-mix(in oklab, var(--paper) 30%, transparent); }
+.stone-chip-var { font-family: var(--font-mono); font-size: var(--t-caption); color: color-mix(in oklab, var(--paper) 50%, transparent); }
 
 /* ── Footer ── */
 .page-footer {
@@ -295,7 +267,7 @@ body {
   <header class="page-header">
     <div class="page-eyebrow">Meyakara Design System — Colour</div>
     <h1 class="page-title">Colour Roles</h1>
-    <p class="page-sub">Meyakara has no fixed brand colour. The foundation is constant. Collections activate on top of it. Every colour decision in this system follows from one rule: the escape begins where the lobby ends.</p>
+    <p class="page-sub">Meyakara has no fixed brand colour. The foundation is constant. Collections activate on top of it via four accent pointer vars. Currently one collection is active: Dhundh.</p>
   </header>
 
   <!-- 01 The four layers -->
@@ -314,8 +286,8 @@ body {
         <tr>
           <td>Foundation</td>
           <td>--paper · --ink families</td>
-          <td>Canvas and marks. The brand at rest. Header, footer, checkout, meta pages.</td>
-          <td class="layer-constant">Never</td>
+          <td>Canvas and marks. The raw values never change. Dark modes (Dhundh before-dawn) re-point --bg and --fg away from paper/ink — but --paper and --ink themselves stay fixed underneath.</td>
+          <td class="layer-constant">Raw values: never.<br>--bg / --fg pointers: yes in dark modes.</td>
         </tr>
         <tr>
           <td>Atmosphere</td>
@@ -332,7 +304,7 @@ body {
         <tr>
           <td>Soul</td>
           <td>--accent</td>
-          <td>The single defining colour. CTAs, interactive states, key labels. Use sparingly. The colour that names this escape.</td>
+          <td>The single defining colour. CTAs, interactive states, key labels. The colour that names this escape.</td>
           <td>Yes — per collection</td>
         </tr>
         <tr>
@@ -370,132 +342,154 @@ body {
       <div class="pointer-card">
         <span class="pointer-role">Depth</span>
         <span class="pointer-var">--accent-deep</span>
-        <p class="pointer-desc">Dark variant. High contrast moments. Also used for small interactive text when the soul lacks contrast.</p>
+        <p class="pointer-desc">Dark variant. High contrast moments. Also used for small interactive text when soul lacks contrast.</p>
         <div class="pointer-default">Default: var(--ink)</div>
       </div>
     </div>
   </section>
 
-  <!-- 03 The default state -->
+  <!-- 03 Dhundh activation -->
   <section class="section">
-    <div class="section-label">03 — The root default</div>
-    <div class="default-block">
-      <p>The <code style="font-family:var(--font-mono); font-size:0.85em;">:root</code> accent default is the foundation — not Lino, not any collection. No collection is active until a <code style="font-family:var(--font-mono); font-size:0.85em;">.collection-*</code> class is applied to a wrapper element. A page without a collection class renders in paper and ink only. That is the correct behaviour — the escape has not been declared yet.</p>
-      <p style="margin-top: var(--s-4); color: var(--ink-mute); font-size: var(--t-body-sm); line-height: var(--lh-prose);">Lino is not the brand colour. It is the most accessible collection, used as the year-round default when a collection <em>is</em> active. It is activated explicitly via <code style="font-family:var(--font-mono); font-size:0.85em;">.collection-lino</code>.</p>
-      <div class="code-block">/* :root defaults — no collection active */
---accent:      var(--ink);
---accent-soft: var(--ink-mute);
---accent-deep: var(--ink);
---accent-tint: var(--paper-warm);
+    <div class="section-label">03 — Activating Dhundh</div>
+    <div class="code-block">/* Dhundh owns the full page — body carries the dawn class */
+&lt;body class="collection-dhundh"&gt;
 
-/* Activate a collection on its wrapper */
-&lt;main class="collection-lino"&gt; … &lt;/main&gt;
-&lt;main class="collection-dhundh"&gt; … &lt;/main&gt;
-&lt;main class="collection-raat"&gt; … &lt;/main&gt;  /* ← inverts foundation */
+  /* Phase 01 — City night: apply before-dawn on opening sections */
+  &lt;section class="collection-dhundh--before-dawn"&gt;
+    &lt;header&gt;…&lt;/header&gt;   /* inherits the dark world */
+    /* hero, mist accents */
+  &lt;/section&gt;
 
-/* Brand chrome stays outside — always */
-&lt;header class="mk-lobby"&gt; … &lt;/header&gt;
-&lt;footer class="mk-lobby"&gt; … &lt;/footer&gt;</div>
-    </div>
+  /* Phase 02 — Stone in-between: applied directly as bg, not a class */
+  &lt;section style="background: var(--dhundh-stone)"&gt;…&lt;/section&gt;
+
+  /* Phase 03 — Mountain clarity: inherits .collection-dhundh from body */
+  &lt;section&gt;…&lt;/section&gt;
+
+  &lt;footer&gt;…&lt;/footer&gt;   /* inherits dawn world */
+&lt;/body&gt;</div>
   </section>
 
-  <!-- 04 All collections at a glance -->
+  <!-- 04 Dhundh colour roles — both modes -->
   <section class="section">
-    <div class="section-label">04 — All collections at a glance</div>
-    <p style="font-size: var(--t-body-sm); color: var(--ink-mute); margin-bottom: var(--s-6); line-height: var(--lh-prose); max-width: 60ch; font-style: italic;">Soul colours are outlined. They are the colours you would choose if you could choose only one — the most specific, most irreplaceable colour in each collection.</p>
-    <div class="matrix">
-      <!-- Header row -->
-      <div class="matrix-role" style="background: var(--paper-deep);">Role</div>
-      <div class="matrix-head">Lino<br><span style="font-size:10px; color:var(--ink-mute); font-style:italic; text-transform:none; letter-spacing:0;">slow Sunday</span></div>
-      <div class="matrix-head">Dhundh <span class="matrix-head-hi">धुंध</span><br><span style="font-size:10px; color:var(--ink-mute); font-style:italic; text-transform:none; letter-spacing:0;">6am ridge</span></div>
-      <div class="matrix-head">Baar <span class="matrix-head-hi">बार</span><br><span style="font-size:10px; color:var(--ink-mute); font-style:italic; text-transform:none; letter-spacing:0;">the beach</span></div>
-      <div class="matrix-head">Mandarin<br><span style="font-size:10px; color:var(--ink-mute); font-style:italic; text-transform:none; letter-spacing:0;">the collar</span></div>
-      <div class="matrix-head" style="border-right:none;">Raat <span class="matrix-head-hi">रात</span><br><span style="font-size:10px; color:var(--ink-mute); font-style:italic; text-transform:none; letter-spacing:0;">the hour before</span></div>
+    <div class="section-label">04 — Dhundh colour roles</div>
+    <p style="font-size:var(--t-body-sm); color:var(--ink-mute); line-height:var(--lh-prose); max-width:60ch; font-style:italic; margin-bottom:var(--s-6);">The same seven palette vars serve all three phases. The CSS re-assigns their roles depending on which surface mode a section lives in. Soul colours are outlined.</p>
 
-      <!-- Atmosphere row -->
-      <div class="matrix-role">Atmosphere<br><span style="font-family:var(--font-mono); font-size:8px; letter-spacing:0; text-transform:none;">--accent-tint</span></div>
-      <div class="matrix-cell"><div class="matrix-swatch"><div class="matrix-chip" style="background:#E2C77F;"></div><div class="matrix-var">lino-sun</div><div class="matrix-hex">#E2C77F</div></div></div>
-      <div class="matrix-cell"><div class="matrix-swatch"><div class="matrix-chip" style="background:#E8E9E6;border:1px solid var(--rule-soft);"></div><div class="matrix-var">dhundh-fog</div><div class="matrix-hex">#E8E9E6</div></div></div>
-      <div class="matrix-cell"><div class="matrix-swatch"><div class="matrix-chip" style="background:#F3EBDA;border:1px solid var(--rule-soft);"></div><div class="matrix-var">baar-bleached</div><div class="matrix-hex">#F3EBDA</div></div></div>
-      <div class="matrix-cell"><div class="matrix-swatch"><div class="matrix-chip" style="background:#C7B89A;"></div><div class="matrix-var">mandarin-silk</div><div class="matrix-hex">#C7B89A</div></div></div>
-      <div class="matrix-cell" style="border-right:none;"><div class="matrix-swatch"><div class="matrix-chip" style="background:#1F1B2A;"></div><div class="matrix-var">raat-smoke</div><div class="matrix-hex">#1F1B2A</div></div></div>
+    <!-- Dawn + Before-dawn side by side -->
+    <div class="mode-grid">
 
-      <!-- Structure row -->
-      <div class="matrix-role">Structure<br><span style="font-family:var(--font-mono); font-size:8px; letter-spacing:0; text-transform:none;">--accent-soft</span></div>
-      <div class="matrix-cell"><div class="matrix-swatch"><div class="matrix-chip" style="background:#C9B89A;"></div><div class="matrix-var">lino-stone</div><div class="matrix-hex">#C9B89A</div></div></div>
-      <div class="matrix-cell"><div class="matrix-swatch"><div class="matrix-chip" style="background:#8FA0A8;"></div><div class="matrix-var">dhundh-blue-grey</div><div class="matrix-hex">#8FA0A8</div></div></div>
-      <div class="matrix-cell"><div class="matrix-swatch"><div class="matrix-chip" style="background:#8B6F55;"></div><div class="matrix-var">baar-driftwood</div><div class="matrix-hex">#8B6F55</div></div></div>
-      <div class="matrix-cell"><div class="matrix-swatch"><div class="matrix-chip" style="background:#5B6772;"></div><div class="matrix-var">mandarin-slate</div><div class="matrix-hex">#5B6772</div></div></div>
-      <div class="matrix-cell" style="border-right:none;"><div class="matrix-swatch"><div class="matrix-chip" style="background:#5B3AC7;"></div><div class="matrix-var">raat-violet</div><div class="matrix-hex">#5B3AC7</div></div></div>
+      <!-- Dawn -->
+      <div class="mode-panel mode-panel--dawn">
+        <div>
+          <div class="mode-label">Phase 03 — Mountain clarity</div>
+          <div class="mode-class">.collection-dhundh</div>
+        </div>
+        <div class="role-row">
+          <div class="role-chip" style="background:var(--dhundh-fog); border:1px solid var(--rule-soft);"></div>
+          <div class="role-info">
+            <span class="role-name">Atmosphere</span>
+            <span class="role-var">--dhundh-fog → --accent-tint</span>
+            <span class="role-hex">#D8DDD9 · Earned — final sections only</span>
+          </div>
+        </div>
+        <div class="role-row">
+          <div class="role-chip" style="background:var(--dhundh-blue-grey);"></div>
+          <div class="role-info">
+            <span class="role-name">Structure</span>
+            <span class="role-var">--dhundh-blue-grey → --accent-soft</span>
+            <span class="role-hex">#8FA0A8 · Cool morning on rock</span>
+          </div>
+        </div>
+        <div class="role-row">
+          <div class="role-chip role-chip--soul" style="background:var(--dhundh-pine); color:var(--ink);"></div>
+          <div class="role-info">
+            <span class="role-name">Soul ◼</span>
+            <span class="role-var">--dhundh-pine → --accent</span>
+            <span class="role-hex">#4F5C53 · Pine on paper</span>
+          </div>
+        </div>
+        <div class="role-row">
+          <div class="role-chip" style="background:var(--dhundh-deep);"></div>
+          <div class="role-info">
+            <span class="role-name">Depth</span>
+            <span class="role-var">--dhundh-deep → --accent-deep</span>
+            <span class="role-hex">#2D332E · Absolute dark</span>
+          </div>
+        </div>
+      </div>
 
-      <!-- Soul row -->
-      <div class="matrix-role">Soul ◼<br><span style="font-family:var(--font-mono); font-size:8px; letter-spacing:0; text-transform:none;">--accent</span></div>
-      <div class="matrix-cell matrix-soul"><div class="matrix-swatch"><div class="matrix-chip" style="background:#B26B4A;outline:2px solid var(--ink);outline-offset:-2px;"></div><div class="matrix-var">lino-terracotta</div><div class="matrix-hex">#B26B4A</div></div></div>
-      <div class="matrix-cell matrix-soul"><div class="matrix-swatch"><div class="matrix-chip" style="background:#4F5C53;outline:2px solid var(--ink);outline-offset:-2px;"></div><div class="matrix-var">dhundh-pine</div><div class="matrix-hex">#4F5C53</div></div></div>
-      <div class="matrix-cell matrix-soul"><div class="matrix-swatch"><div class="matrix-chip" style="background:#D98A78;outline:2px solid var(--ink);outline-offset:-2px;"></div><div class="matrix-var">baar-coral ⚠</div><div class="matrix-hex">#D98A78</div></div></div>
-      <div class="matrix-cell matrix-soul"><div class="matrix-swatch"><div class="matrix-chip" style="background:#1B2A4A;outline:2px solid var(--ink);outline-offset:-2px;"></div><div class="matrix-var">mandarin-ink</div><div class="matrix-hex">#1B2A4A</div></div></div>
-      <div class="matrix-cell matrix-soul" style="border-right:none;"><div class="matrix-swatch"><div class="matrix-chip" style="background:#C9A24A;outline:2px solid var(--paper);outline-offset:-2px;"></div><div class="matrix-var">raat-gold</div><div class="matrix-hex">#C9A24A</div></div></div>
+      <!-- Before-dawn -->
+      <div class="mode-panel mode-panel--before">
+        <div>
+          <div class="mode-label">Phase 01 — City night</div>
+          <div class="mode-class">.collection-dhundh--before-dawn</div>
+        </div>
+        <div class="role-row">
+          <div class="role-chip" style="background:var(--dhundh-night); border:1px solid rgba(255,255,255,0.08);"></div>
+          <div class="role-info">
+            <span class="role-name">Background</span>
+            <span class="role-var">--dhundh-night → --bg</span>
+            <span class="role-hex">#090C0A · Must stay deep</span>
+          </div>
+        </div>
+        <div class="role-row">
+          <div class="role-chip role-chip--soul" style="background:var(--dhundh-mist); color:var(--paper);"></div>
+          <div class="role-info">
+            <span class="role-name">Soul ◼</span>
+            <span class="role-var">--dhundh-mist → --accent</span>
+            <span class="role-hex">#9EAAA4 · Only luminous thing in the dark</span>
+          </div>
+        </div>
+        <div class="role-row">
+          <div class="role-chip" style="background:var(--dhundh-pine);"></div>
+          <div class="role-info">
+            <span class="role-name">Structure</span>
+            <span class="role-var">--dhundh-pine → --accent-soft</span>
+            <span class="role-hex">#4F5C53 · Pine silhouette, felt not read</span>
+          </div>
+        </div>
+        <div class="role-row">
+          <div class="role-chip" style="background:var(--dhundh-deep);"></div>
+          <div class="role-info">
+            <span class="role-name">Depth</span>
+            <span class="role-var">--dhundh-deep → --accent-deep</span>
+            <span class="role-hex">#2D332E · Absolute dark</span>
+          </div>
+        </div>
+      </div>
 
-      <!-- Depth row -->
-      <div class="matrix-role" style="border-bottom:none;">Depth<br><span style="font-family:var(--font-mono); font-size:8px; letter-spacing:0; text-transform:none;">--accent-deep</span></div>
-      <div class="matrix-cell" style="border-bottom:none;"><div class="matrix-swatch"><div class="matrix-chip" style="background:#7E7A4A;"></div><div class="matrix-var">lino-olive</div><div class="matrix-hex">#7E7A4A</div></div></div>
-      <div class="matrix-cell" style="border-bottom:none;"><div class="matrix-swatch"><div class="matrix-chip" style="background:#2D332E;"></div><div class="matrix-var">dhundh-deep</div><div class="matrix-hex">#2D332E</div></div></div>
-      <div class="matrix-cell" style="border-bottom:none;"><div class="matrix-swatch"><div class="matrix-chip" style="background:#4F5E5C;"></div><div class="matrix-var">baar-tide</div><div class="matrix-hex">#4F5E5C</div></div></div>
-      <div class="matrix-cell" style="border-bottom:none;"><div class="matrix-swatch"><div class="matrix-chip" style="background:#11182B;"></div><div class="matrix-var">mandarin-deep</div><div class="matrix-hex">#11182B</div></div></div>
-      <div class="matrix-cell" style="border-right:none;border-bottom:none;"><div class="matrix-swatch"><div class="matrix-chip" style="background:#8E2A6A;"></div><div class="matrix-var">raat-bleed</div><div class="matrix-hex">#8E2A6A</div></div></div>
     </div>
-    <p style="font-size: var(--t-caption); color: var(--ink-faint); margin-top: var(--s-3); font-style: italic;">⚠ Baar coral — decorative use only on --paper. Contrast ≈ 2.8:1. Use baar-tide (depth) for small interactive text on Baar pages. &nbsp;·&nbsp; Raat inverts the foundation — see note below.</p>
-  </section>
 
-  <!-- 05 The lobby -->
-  <section class="section">
-    <div class="section-label">05 — The lobby rule</div>
-    <div class="lobby-rule">
+    <!-- Stone — Phase 02 -->
+    <div class="stone-panel">
       <div>
-        <div class="lobby-rule-label">The rule</div>
-        <div class="lobby-rule-title">Brand chrome never carries collection accent.</div>
-        <p class="lobby-rule-desc">These surfaces belong to the brand, not to any collection. They stay in paper and ink regardless of which collection is active on the page.</p>
-        <div style="margin-top: var(--s-4);">
-          <span style="font-family:var(--font-mono); font-size:var(--t-caption); color:var(--ink-mute);">.mk-lobby</span>
-          <p style="font-size:var(--t-caption); color:var(--ink-faint); margin-top:var(--s-2); font-style:italic; line-height:1.5;">Resets all --accent vars to foundation values. Apply to header, footer, drawers, checkout, account.</p>
-        </div>
+        <div class="stone-label">Phase 02 — The in-between</div>
+        <div class="stone-title">Stone is not mapped to<br>an accent pointer.</div>
+        <p class="stone-desc">It is applied directly as a section background — <code style="font-family:var(--font-mono); font-size:0.9em;">background: var(--dhundh-stone)</code>. The one surface that belongs to neither city night nor mountain clarity. One transition section per page. It is a bridge, not a destination.</p>
       </div>
-      <div class="lobby-surfaces">
-        <div class="lobby-surface-row">
-          <div class="lobby-surface-chip"></div>
-          <div>
-            <div class="lobby-surface-name">Site header</div>
-            <div class="lobby-surface-note">Navigation, wordmark, bag. Always paper. Always ink.</div>
+      <div class="stone-chip-row">
+        <div class="stone-chip-item">
+          <div class="stone-chip" style="background:var(--dhundh-stone);"></div>
+          <div class="stone-chip-info">
+            <span class="stone-chip-label">Section bg</span>
+            <span class="stone-chip-var">--dhundh-stone · #6E6A60</span>
           </div>
         </div>
-        <div class="lobby-surface-row">
-          <div class="lobby-surface-chip"></div>
-          <div>
-            <div class="lobby-surface-name">Site footer</div>
-            <div class="lobby-surface-note">Links, tagline, copyright. Always paper. Always ink.</div>
-          </div>
-        </div>
-        <div class="lobby-surface-row">
-          <div class="lobby-surface-chip"></div>
-          <div>
-            <div class="lobby-surface-name">Checkout &amp; account</div>
-            <div class="lobby-surface-note">Transactional surfaces. No escape is active here.</div>
-          </div>
-        </div>
-        <div class="lobby-surface-row">
-          <div class="lobby-surface-chip"></div>
-          <div>
-            <div class="lobby-surface-name">Error &amp; loading states</div>
-            <div class="lobby-surface-note">404, empty states, loading. Foundation only.</div>
+        <div class="stone-chip-item">
+          <div class="stone-chip" style="background:var(--paper); border:1px solid rgba(255,255,255,0.15);"></div>
+          <div class="stone-chip-info">
+            <span class="stone-chip-label">Text on stone</span>
+            <span class="stone-chip-var">var(--paper) · #F1ECE0</span>
           </div>
         </div>
       </div>
     </div>
+
   </section>
 
   <footer class="page-footer">
     <span>Meyakara Design System</span>
-    <span>Colour Roles · Est. 2026</span>
+    <span>Colour Roles · Dhundh · Est. 2026</span>
   </footer>
 
 </div>

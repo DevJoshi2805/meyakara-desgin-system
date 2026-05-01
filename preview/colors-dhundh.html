@@ -9,24 +9,27 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { background: var(--paper); color: var(--ink); font-family: var(--font-serif); padding: 28px 32px; }
 
-.head { padding-bottom: 14px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 22px; }
+.head { padding-bottom: 14px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 28px; }
 .head-row { display: flex; align-items: baseline; gap: 14px; justify-content: space-between; margin-bottom: 6px; }
 .head-name { font-size: 22px; font-weight: 400; display: flex; align-items: baseline; gap: 10px; }
 .head-hi { font-family: var(--font-devanagari); font-size: 17px; color: var(--ink-mute); }
 .head-tag { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-faint); }
 .head-desc { font-size: 12px; color: var(--ink-mute); line-height: 1.55; font-style: italic; max-width: 60ch; }
-.head-quote { font-size: 11px; color: var(--ink-faint); margin-top: 6px; font-style: italic; border-left: 2px solid var(--rule-soft); padding-left: 10px; }
 
-.demo {
-  background: color-mix(in oklab, var(--dhundh-fog) 30%, var(--paper));
+.mode-label {
+  font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--ink-faint); margin-bottom: 16px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+/* ── DAWN MODE (paper) ── */
+.dawn-demo {
+  background: color-mix(in oklab, var(--dhundh-fog) 40%, var(--paper));
   border: 1px solid var(--rule-soft);
   padding: 20px;
-  margin-bottom: 22px;
+  margin-bottom: 10px;
 }
-.demo-label { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
-.section-label { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-faint); padding-bottom: 10px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 14px; }
-
-.role-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+.role-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 10px; }
 .swatch { display: flex; flex-direction: column; gap: 5px; }
 .chip { height: 76px; border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent); }
 .role-tag { font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-faint); }
@@ -36,7 +39,34 @@ body { background: var(--paper); color: var(--ink); font-family: var(--font-seri
 .swatch--soul .chip { outline: 2px solid var(--ink); outline-offset: -2px; }
 .swatch--soul .role-tag { color: var(--ink-mute); }
 
-.extra-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 22px; }
+/* ── BEFORE-DAWN MODE (dark) ── */
+.dark-demo {
+  background: var(--dhundh-night);
+  padding: 20px;
+  margin-bottom: 10px;
+  position: relative;
+}
+.dark-demo .mode-label { color: color-mix(in oklab, var(--paper) 35%, transparent); border-bottom-color: color-mix(in oklab, var(--paper) 10%, transparent); }
+.dark-chip { height: 76px; border: 1px solid color-mix(in oklab, var(--paper) 10%, transparent); }
+.dark-role-tag { font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: color-mix(in oklab, var(--paper) 38%, transparent); }
+.dark-var { font-family: var(--font-mono); font-size: 9px; color: color-mix(in oklab, var(--paper) 30%, transparent); }
+.dark-desc { font-size: 9px; color: color-mix(in oklab, var(--paper) 28%, transparent); font-style: italic; line-height: 1.4; margin-top: 1px; }
+.dark-soul .dark-chip { outline: 2px solid var(--dhundh-mist); outline-offset: -2px; }
+.dark-soul .dark-role-tag { color: var(--dhundh-mist); }
+
+/* Ghost text demonstration */
+.ghost-demo {
+  background: var(--dhundh-night);
+  padding: 28px 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.ghost-label { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: color-mix(in oklab, var(--paper) 25%, transparent); margin-bottom: 16px; }
+.ghost-text { font-size: 42px; letter-spacing: 0.3em; font-weight: 300; color: color-mix(in oklab, var(--paper) 18%, transparent); }
+.mist-text  { font-size: 42px; letter-spacing: 0.3em; font-weight: 300; color: var(--dhundh-mist); }
+
+/* ── FULL PALETTE ── */
+.all-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-bottom: 22px; }
 .extra-chip { height: 40px; border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent); }
 .extra-note { font-size: 9px; color: var(--ink-faint); font-style: italic; line-height: 1.4; margin-top: 5px; }
 
@@ -45,104 +75,174 @@ body { background: var(--paper); color: var(--ink); font-family: var(--font-seri
   line-height: 1.7; background: var(--paper-deep); padding: 14px 16px;
   border: 1px solid var(--rule-soft); margin-bottom: 22px;
 }
+.section-label { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-faint); padding-bottom: 10px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 14px; }
 .foot { padding-top: 16px; border-top: 1px solid var(--rule-soft); display: flex; justify-content: space-between; }
 .foot span { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-faint); }
+.gap { margin-bottom: 28px; }
 </style>
 </head>
-<body class="collection-dhundh">
+<body>
 
 <div class="head">
   <div class="head-row">
     <div class="head-name">Dhundh <span class="head-hi">धुंध</span></div>
-    <div class="head-tag">The Hills · 6am Ridge Line</div>
+    <div class="head-tag">The Hills · Two Moments, One Escape</div>
   </div>
-  <div class="head-desc">Fog white, cool blue-grey, muted pine, stone. The colours of a 6am ridge line.</div>
-  <div class="head-quote">The city will wait. The hills won't.</div>
+  <div class="head-desc">Before dawn and after. The same seven colours serve both moments — reassigned by CSS class depending on which part of the escape the section lives in.</div>
 </div>
 
-<div class="demo">
-  <div class="demo-label">Section background · atmosphere tint (dhundh-fog at 30%)</div>
-
-  <div class="section-label">Role assignments — activate with .collection-dhundh</div>
+<!-- DAWN MODE -->
+<div class="mode-label">Dawn · .collection-dhundh · Paper foundation, light returns</div>
+<div class="dawn-demo collection-dhundh">
   <div class="role-grid">
-    <div class="swatch">
-      <div class="chip" style="background: var(--accent-tint); border: 1px solid var(--rule-soft);"></div>
-      <div class="role-tag">Atmosphere</div>
-      <div class="swatch-var">--accent-tint → dhundh-fog</div>
-      <div class="swatch-hex">#E8E9E6</div>
-      <div class="swatch-role-desc">The mist. Close to paper — intentionally quiet.</div>
+    <div class="swatch swatch--soul">
+      <div class="chip" style="background: var(--accent);"></div>
+      <div class="role-tag">Soul ◼</div>
+      <div class="swatch-var">--accent → dhundh-pine</div>
+      <div class="swatch-hex">#4F5C53</div>
+      <div class="swatch-role-desc">Dark pine on paper. The defining mark when light returns.</div>
     </div>
     <div class="swatch">
       <div class="chip" style="background: var(--accent-soft);"></div>
       <div class="role-tag">Structure</div>
       <div class="swatch-var">--accent-soft → dhundh-blue-grey</div>
       <div class="swatch-hex">#8FA0A8</div>
-      <div class="swatch-role-desc">Cool morning light on rock. Borders, mid-weight UI.</div>
-    </div>
-    <div class="swatch swatch--soul">
-      <div class="chip" style="background: var(--accent);"></div>
-      <div class="role-tag">Soul ◼</div>
-      <div class="swatch-var">--accent → dhundh-pine</div>
-      <div class="swatch-hex">#4F5C53</div>
-      <div class="swatch-role-desc">Dark pine. The colour that names the hill. CTAs.</div>
+      <div class="swatch-role-desc">Cool morning light on rock. Borders, card dividers.</div>
     </div>
     <div class="swatch">
       <div class="chip" style="background: var(--accent-deep);"></div>
       <div class="role-tag">Depth</div>
       <div class="swatch-var">--accent-deep → dhundh-deep</div>
       <div class="swatch-hex">#2D332E</div>
-      <div class="swatch-role-desc">Earth before dawn. High contrast moments.</div>
+      <div class="swatch-role-desc">Earth. High contrast moments.</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: var(--accent-tint); border: 1px solid var(--rule-soft);"></div>
+      <div class="role-tag">Atmosphere</div>
+      <div class="swatch-var">--accent-tint → dhundh-fog</div>
+      <div class="swatch-hex">#D8DDD9</div>
+      <div class="swatch-role-desc">Cool mist wash. Section background tint.</div>
     </div>
   </div>
 </div>
 
-<div class="section-label">Full palette · all five colours</div>
-<div class="extra-grid">
+<div class="gap"></div>
+
+<!-- BEFORE-DAWN MODE -->
+<div class="mode-label" style="color: var(--ink-faint);">Before Dawn · .collection-dhundh--before-dawn · Foundation inverts, fog is the only light</div>
+<div class="dark-demo collection-dhundh--before-dawn">
+  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+    <div class="swatch dark-soul">
+      <div class="dark-chip" style="background: var(--dhundh-mist);"></div>
+      <div class="dark-role-tag">Soul ◼</div>
+      <div class="dark-var">--accent → dhundh-mist</div>
+      <div class="dark-var">#9EAAA4</div>
+      <div class="dark-desc">Luminous fog in darkness. The only light in the scene.</div>
+    </div>
+    <div class="swatch">
+      <div class="dark-chip" style="background: var(--dhundh-pine);"></div>
+      <div class="dark-role-tag">Structure</div>
+      <div class="dark-var">--accent-soft → dhundh-pine</div>
+      <div class="dark-var">#4F5C53</div>
+      <div class="dark-desc">Pine silhouette. Felt as texture, not read as colour.</div>
+    </div>
+    <div class="swatch">
+      <div class="dark-chip" style="background: var(--dhundh-deep);"></div>
+      <div class="dark-role-tag">Depth</div>
+      <div class="dark-var">--accent-deep → dhundh-deep</div>
+      <div class="dark-var">#2D332E</div>
+      <div class="dark-desc">Absolute pine darkness.</div>
+    </div>
+    <div class="swatch">
+      <div class="dark-chip" style="background: var(--dhundh-night);"></div>
+      <div class="dark-role-tag">Background</div>
+      <div class="dark-var">--bg → dhundh-night</div>
+      <div class="dark-var">#090C0A</div>
+      <div class="dark-desc">Near-black pine dark. Cold, still, immersive.</div>
+    </div>
+  </div>
+</div>
+
+<div class="gap"></div>
+
+<!-- GHOST TEXT DEMO -->
+<div class="section-label">Ghost text · .text-ghost · Deliberate near-invisibility</div>
+<div class="ghost-demo">
+  <div class="ghost-label">Ghost display type — .text-ghost applied</div>
+  <div class="ghost-text">D H U N D H</div>
+  <div style="margin-top: 16px; font-size: 9px; letter-spacing: 0.22em; color: color-mix(in oklab, var(--paper) 22%, transparent); text-transform: uppercase;">vs. mist soul accent below</div>
+  <div class="mist-text" style="margin-top: 8px;">D H U N D H</div>
+</div>
+
+<div class="gap"></div>
+
+<!-- FULL PALETTE -->
+<div class="section-label">Full palette · all seven vars</div>
+<div class="all-grid">
   <div class="swatch">
-    <div class="extra-chip" style="background: #E8E9E6; border: 1px solid var(--rule-soft);"></div>
+    <div class="extra-chip" style="background: #090C0A;"></div>
+    <div class="swatch-var">dhundh-night</div>
+    <div class="swatch-hex">#090C0A</div>
+    <div class="extra-note">→ before-dawn bg</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #D8DDD9; border: 1px solid var(--rule-soft);"></div>
     <div class="swatch-var">dhundh-fog</div>
-    <div class="swatch-hex">#E8E9E6</div>
-    <div class="extra-note">→ atmosphere</div>
+    <div class="swatch-hex">#D8DDD9</div>
+    <div class="extra-note">→ dawn atmosphere</div>
   </div>
   <div class="swatch">
     <div class="extra-chip" style="background: #8FA0A8;"></div>
     <div class="swatch-var">dhundh-blue-grey</div>
     <div class="swatch-hex">#8FA0A8</div>
-    <div class="extra-note">→ structure</div>
+    <div class="extra-note">→ dawn structure</div>
   </div>
   <div class="swatch">
     <div class="extra-chip" style="background: #6E6A60;"></div>
     <div class="swatch-var">dhundh-stone</div>
     <div class="swatch-hex">#6E6A60</div>
-    <div class="extra-note">Unmapped. Mid-value bridge.</div>
+    <div class="extra-note">Bridge tone, unmapped</div>
+  </div>
+  <div class="swatch">
+    <div class="extra-chip" style="background: #9EAAA4;"></div>
+    <div class="swatch-var">dhundh-mist</div>
+    <div class="swatch-hex">#9EAAA4</div>
+    <div class="extra-note">→ before-dawn soul</div>
   </div>
   <div class="swatch">
     <div class="extra-chip" style="background: #4F5C53;"></div>
     <div class="swatch-var">dhundh-pine</div>
     <div class="swatch-hex">#4F5C53</div>
-    <div class="extra-note">→ soul</div>
+    <div class="extra-note">→ dawn soul</div>
   </div>
   <div class="swatch">
     <div class="extra-chip" style="background: #2D332E;"></div>
     <div class="swatch-var">dhundh-deep</div>
     <div class="swatch-hex">#2D332E</div>
-    <div class="extra-note">→ depth</div>
+    <div class="extra-note">→ depth (both)</div>
   </div>
 </div>
 
+<!-- CODE -->
 <div class="section-label">Activation</div>
-<div class="code-block">/* Apply on the collection page or section wrapper. */
+<div class="code-block">&lt;!-- Collection page: collection owns header, content, footer --&gt;
+&lt;body class="collection-dhundh"&gt;
 
-&lt;main class="collection-dhundh"&gt;
-  &lt;!-- --accent      = #4F5C53 (dhundh-pine / soul)      --&gt;
-  &lt;!-- --accent-soft = #8FA0A8 (dhundh-blue-grey / struct) --&gt;
-  &lt;!-- --accent-deep = #2D332E (dhundh-deep / depth)      --&gt;
-  &lt;!-- --accent-tint = #E8E9E6 (dhundh-fog / atmosphere)  --&gt;
-&lt;/main&gt;</div>
+  &lt;!-- Before-dawn sections (dark, foundation inverts) --&gt;
+  &lt;section class="collection-dhundh--before-dawn"&gt;
+    &lt;header&gt;…&lt;/header&gt;   &lt;!-- inherits dark world — no mk-lobby --&gt;
+    &lt;!-- Use .text-ghost on display type here --&gt;
+  &lt;/section&gt;
+
+  &lt;!-- Dawn sections (light returns, pine on paper) --&gt;
+  &lt;section&gt;…&lt;/section&gt;
+
+  &lt;footer&gt;…&lt;/footer&gt;     &lt;!-- inherits dawn world --&gt;
+&lt;/body&gt;</div>
 
 <div class="foot">
   <span>Meyakara Design System</span>
-  <span>Dhundh · The Hills</span>
+  <span>Dhundh · The Hills · Two moments</span>
 </div>
 
 </body>

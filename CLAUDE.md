@@ -34,7 +34,9 @@ When generating or editing any artifact in this repo:
 - **Sentence case** for prose; **ALL CAPS + wide tracking** only for labels/eyebrows.
 - **The wordmark contains a Devanagari म between MEY and KARA** — never remove or replace it.
 - The मे monogram (`favicon.svg`) is for favicon/tiny-space only; everywhere else use the wordmark.
-- Hairlines, not shadows. Paper, not gradients. Fades, not slides. Near-zero radii.
+- Hairlines, not shadows. Fades, not slides. Near-zero radii. No decorative gradients. Paper is the default canvas — dark collection modes (Dhundh before-dawn, Raat) override this intentionally. **Exception:** atmospheric depth overlays on dark full-bleed heroes are allowed — a radial overlay using two tones of the same palette colour (e.g. `--dhundh-deep` into `--dhundh-night`), dark-on-dark, imperceptible at a glance. One per hero, never on light sections.
+- Collection pages are fully immersive — the header and footer on a collection page inherit the collection's world. Never apply `.mk-lobby` to a collection page header or footer. The lobby (paper/ink) is for the home page, account, checkout, and utility pages only.
+- Dhundh is a dual-moment collection: `.collection-dhundh` (dawn, paper) and `.collection-dhundh--before-dawn` (dark, foundation inverts). Both modes use the same seven raw palette vars. Use `.text-ghost` for the near-invisible display type in before-dawn heroes.
 - The design system's primary language is English. Collection names may appear in English, Hindi (Devanagari), or both — this is a team decision per collection and is not a design-system constraint.
 
 ## Working with this system
